@@ -2,4 +2,4 @@ pandas
 plotly
 streamlit
 pathlib
-yaml
+pyYAML
