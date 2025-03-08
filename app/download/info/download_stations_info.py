@@ -14,6 +14,8 @@ import pandas as pd
 import streamlit as st
 from pathlib import Path
 
+st.cache_data.clear()
+
 # -----------------------------FUNCTIONS----------------------------------
 
 def load_config_file():
@@ -85,7 +87,6 @@ def parse_stations_info(df_stations_info):
 
 # -----------------------------MAIN PROGRAM----------------------------------
 
-@st.cache_data
 def download_stations_info():
     config = load_config_file()
     df_stations_info = get_stations_info(config)

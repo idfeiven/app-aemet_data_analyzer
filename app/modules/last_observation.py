@@ -4,6 +4,10 @@ import streamlit as st
 import plotly.express as px
 from download.stations import download_today_observation
 
+st.cache_data.clear()
+
+# -----------------------------FUNCTIONS--------------------------------
+
 def parse_stations_data(df):
 
     df = df.copy()
@@ -26,7 +30,7 @@ def parse_stations_data(df):
 
     return df
 
-
+# -------------------------------MAIN PROGRAM-------------------------------------
 
 st.title("Última observación")
 st.write("Fuente: red de estaciones de AEMET.")
@@ -73,7 +77,7 @@ if not st.session_state.data_stations.empty:
     # Usar un estilo de mapa para la visualización
     fig.update_layout(mapbox_style="open-street-map", 
                   margin={"r":0,"t":0,"l":0,"b":0},
-                  width=1000, height=600)
+                  width=2000, height=600)
     
     st.plotly_chart(fig, use_container_width=True)
 else:

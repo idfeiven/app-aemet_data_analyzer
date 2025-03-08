@@ -66,7 +66,6 @@ def get_today_observation(config):
 
 # -----------------------------MAIN PROGRAM----------------------------
 
-@st.cache_data
 def download_today_observation():
     
     config = load_config_file()
