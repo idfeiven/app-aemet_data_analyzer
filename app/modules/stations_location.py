@@ -1,9 +1,6 @@
 # pages/mapa.py (Página del mapa interactivo)
-import sys
-import folium
 import pandas as pd
 import streamlit as st
-from pathlib import Path
 import plotly.express as px
 from download.info import download_stations_info
 
