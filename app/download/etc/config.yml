@@ -1,0 +1,20 @@
+# Configuration file for the download process
+# More information in https://opendata.aemet.es/dist/index.html?#/
+
+url_base: https://opendata.aemet.es/opendata
+
+api_key: /?api_key=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpdmFuZG9taW5ndWV6XzkzQGhvdG1haWwuY29tIiwianRpIjoiNjk5ZjU5M2EtNjA0OS00YThkLWFhZjktN2ZiNzgyODk4MzU5IiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2NTg4NDAyMjQsInVzZXJJZCI6IjY5OWY1OTNhLTYwNDktNGE4ZC1hYWY5LTdmYjc4Mjg5ODM1OSIsInJvbGUiOiIifQ.QskQUf2TqdhyM90EFhX72JCxWOs_o3W3L6TltrpXmpI
+
+endpoints:
+
+  observation: 
+    all: /api/observacion/convencional/todas
+    id: /api/observacion/convencional/datos/estacion/{idema}
+  
+  stations:
+    inventory_all: /api/valores/climatologicos/inventarioestaciones/todasestaciones
+    inventory: /api/valores/climatologicos/inventarioestaciones/estaciones/{estaciones}
+    climatology: /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/estacion/{idema}
+    climatology_all: /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/todasestaciones
+    normal_values: /api/valores/climatologicos/normales/estacion/{idema}
+    extreme_values: /api/valores/climatologicos/valoresextremos/parametro/{parametro}/estacion/{idema}
