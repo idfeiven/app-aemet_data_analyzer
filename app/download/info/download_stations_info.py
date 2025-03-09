@@ -15,6 +15,7 @@ import pandas as pd
 import streamlit as st
 from pathlib import Path
 
+# todo fix false errors when downloading
 # -----------------------------FUNCTIONS----------------------------------
 
 def load_config_file():

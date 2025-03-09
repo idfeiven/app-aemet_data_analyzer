@@ -68,8 +68,8 @@ def get_urls_for_requests(dates, station_id, config, api_key):
 
 
 def get_historical_data(urls,
-                        max_retries = 10,
-                        wait_time = 10):
+                        max_retries,
+                        wait_time):
 
     count = 0
     data = pd.DataFrame()
@@ -167,7 +167,7 @@ def download_history_observation(date_ini,
     dates = get_dates_for_requests(date_ini, date_end)
     urls = get_urls_for_requests(dates, station_id, config, api_key)
     data = get_historical_data(urls,
-                            max_retries = 10,
+                            max_retries = 20,
                             wait_time = 10)
     if not data.empty:
         data.reset_index(inplace = True)
