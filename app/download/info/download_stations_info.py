@@ -8,13 +8,12 @@ Author: Iván Domínguez Fuentes
 (c) 2025
 '''
 
+import time
 import yaml
 import requests
 import pandas as pd
 import streamlit as st
 from pathlib import Path
-
-st.cache_data.clear()
 
 # -----------------------------FUNCTIONS----------------------------------
 
@@ -29,37 +28,47 @@ def load_config_file():
 def get_stations_info(config):
 
     url = config['url_base'] + config['endpoints']['stations']['inventory_all'] + config['api_key']
+    retries = 0
+    max_retries = 10
 
-    try:
-        response = requests.get(url)
+    while retries <= max_retries:
+        st.write(f'Intentos: {retries}')
+        
+        try:
+            response = requests.get(url)
 
-        if response.status_code == 200:
-            print(f'{response.reason}. Successful request to the API')
-            response_json = response.json()
+            if response.status_code == 200:
+                st.write(f'{response.reason}. Successful request to the API')
+                response_json = response.json()
 
-            try:
-                data = requests.get(response_json['datos'])
-            except Exception as e:
-                print(f'{response.json['descripcion']}')
-                return pd.DataFrame()
+                try:
+                    data = requests.get(response_json['datos'])
 
-            if data.status_code == 200:
-                print(f' - {data.reason}. Successful data request.')
-                data_json = data.json()
+                    if data.status_code == 200:
+                        st.write(f' - {data.reason}. Successful data request.')
+                        data_json = data.json()
 
-                df_stations_info = pd.DataFrame(data_json)
-                return df_stations_info
+                        df_stations_info = pd.DataFrame(data_json)
+                        return df_stations_info
+                    else:
+                        st.write(f' - {response.status_code}. {response.reason}')
+                        retries += 1
+                        time.sleep(5)
+
+                except Exception as e:
+                    st.write(f"{response.json()['descripcion']}")
+                    retries += 1
+                    time.sleep(5)
+
             else:
-                print(f' - {response.status_code}. {response.reason}')
-                return pd.DataFrame()
+                st.write(f'{response.status_code}. {response.reason}')
+                retries += 1
+                time.sleep(5)
 
-        else:
-            print(f'{response.status_code}. {response.reason}')
-            return pd.DataFrame()
-
-    except Exception as e:
-        print(f'Failed to request to the API. {e}.')
-        return pd.DataFrame()
+        except requests.exceptions.RequestException as e:
+            st.write(f'Failed to request to the API. {e}.')
+            retries += 1
+            time.sleep(5)
 
 
 def _parse_coordinate(coord: str) -> float:
@@ -95,7 +104,7 @@ def download_stations_info():
     if not df_stations_info.empty:
         df_stations_info = parse_stations_info(df_stations_info)
     else:
-        print("Could not parse stations information.")
+        st.write("Could not parse stations information.")
 
     return df_stations_info
 
