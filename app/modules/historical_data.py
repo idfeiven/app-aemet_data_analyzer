@@ -49,24 +49,36 @@ if not stations_info.empty:
     date_range = st.date_input("Selecciona el rango de fechas", [])
     date_ini, date_end = get_dates(date_range)
 
-    station_data_history = download_history_observation.download_history_observation(date_ini,
-                                                                                    date_end,
-                                                                                    station_id)
-    if not station_data_history.empty:
-        st.dataframe(station_data_history)
+    # Mostrar un campo de entrada para que el usuario ingrese la API Key
+    api_key = st.text_input("Introduce tu API Key", type="password")
 
-        data_excel = to_excel(station_data_history)
+    # Verificar si el campo no está vacío
+    if api_key:
+        st.success("API Key recibida con éxito.")
 
-        # Botón para descargar como Excel
-        st.download_button(
-            label="📥 Descargar como Excel",
-            data=data_excel,
-            file_name=f"{station_id}.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+        station_data_history = download_history_observation.download_history_observation(date_ini,
+                                                                                        date_end,
+                                                                                        station_id,
+                                                                                        api_key)
+
+        if not station_data_history.empty:
+            st.dataframe(station_data_history)
+
+            data_excel = to_excel(station_data_history)
+
+            # Botón para descargar como Excel
+            st.download_button(
+                label="📥 Descargar como Excel",
+                data=data_excel,
+                file_name=f"{station_id}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
+        else:
+            st.write("No existen datos para esta estación en el período seleccionado.")
 
     else:
-        st.write("No existen datos para esta estación en el período seleccionado.")
+        st.warning("Por favor, introduce tu API Key. Si no tienes una API key visita https://opendata.aemet.es/centrodedescargas/altaUsuario?")
 
 else:
     st.write("No se ha podido obtener información de las estaciones de AEMET")

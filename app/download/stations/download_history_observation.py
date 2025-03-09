@@ -51,9 +51,11 @@ def get_dates_for_requests(date_ini, date_end):
         return dates
 
 
-def get_urls_for_requests(dates, station_id, config):
+def get_urls_for_requests(dates, station_id, config, api_key):
 
     urls = pd.DataFrame()
+
+    config['api_key'] = api_key
 
     url_fill = config['url_base'] + config['endpoints']['stations']['climatology'] + config['api_key']
 
@@ -157,11 +159,12 @@ def get_historical_data(urls,
 
 def download_history_observation(date_ini,
                                  date_end,
-                                 station_id):
+                                 station_id,
+                                 api_key):
 
     config = load_config_file()
     dates = get_dates_for_requests(date_ini, date_end)
-    urls = get_urls_for_requests(dates, station_id, config)
+    urls = get_urls_for_requests(dates, station_id, config, api_key)
     data = get_historical_data(urls,
                             max_retries = 10,
                             wait_time = 10)
