@@ -11,7 +11,6 @@ Author: Iván Domínguez Fuentes
 import yaml
 import requests
 import pandas as pd
-import streamlit as st
 from pathlib import Path
 
 
