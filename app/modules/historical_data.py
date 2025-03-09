@@ -5,7 +5,6 @@ import plotly.express as px
 from download.stations import download_history_observation
 from download.info import download_stations_info
 
-st.cache_data.clear()
 
 def get_dates(date_range):
     # Verificar si el usuario ha seleccionado un rango válido
@@ -38,6 +37,11 @@ st.warning("La descarga de datos puede llevar mucho tiempo. Para series de datos
 stations_info = download_stations_info.download_stations_info()
 
 if not stations_info.empty:
+
+    if "stations_info" not in st.session_state:
+        st.session_state.stations_info = stations_info
+        stations_info = st.session_state.stations_info
+
     province = st.selectbox(label = "Selecciona una provincia", options = stations_info["provincia"].unique())
     stations_info_province = stations_info[stations_info["provincia"] == province]
 

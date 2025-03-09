@@ -87,6 +87,7 @@ def parse_stations_info(df_stations_info):
 
 # -----------------------------MAIN PROGRAM----------------------------------
 
+
 def download_stations_info():
     config = load_config_file()
     df_stations_info = get_stations_info(config)
