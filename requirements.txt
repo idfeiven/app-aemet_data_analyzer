@@ -3,3 +3,4 @@ plotly
 streamlit
 pathlib
 pyYAML
+openpyxl
