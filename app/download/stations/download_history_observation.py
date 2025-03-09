@@ -56,7 +56,7 @@ def get_urls_for_requests(dates, station_id, config, api_key):
 
     urls = pd.DataFrame()
 
-    config['api_key'] = api_key
+    config['api_key'] = f'/?api_key={api_key}'
 
     url_fill = config['url_base'] + config['endpoints']['stations']['climatology'] + config['api_key']
 
