@@ -12,6 +12,7 @@ import time
 import yaml
 import requests
 import pandas as pd
+import streamlit as st
 from pathlib import Path
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -77,11 +78,11 @@ def get_historical_data(urls,
 
         count+=1
         retries = 1
-        print(f'Peticiones realizadas: {count}/{len(urls)}')
+        st.write(f'Peticiones realizadas: {count}/{len(urls)}')
 
         while retries <= max_retries:
 
-            print(f'Intento {retries}/{max_retries}')
+            st.write(f'Intento {retries}/{max_retries}')
 
             try:
                 response = requests.get(url, timeout = 10)
@@ -103,51 +104,51 @@ def get_historical_data(urls,
                                     if data_response.text.strip():
                                         
                                         if type(data_json) == dict and data_json['estado']:
-                                            print(f' --- No se pudo realizar la petición de datos. {data_json['descripcion']}')
+                                            st.write(f' --- No se pudo realizar la petición de datos. {data_json['descripcion']}')
                                             retries += 1
                                             time.sleep(wait_time)
 
                                         else:
                                             data = pd.concat([data, pd.DataFrame(data_json)], axis = 0)
-                                            print('--- Datos descargados con éxito.')
+                                            st.write('--- Datos descargados con éxito.')
                                             break
                                     else:
-                                        print(f' --- Respuesta vacía. Reintentando petición')
+                                        st.write(f' --- Respuesta vacía. Reintentando petición')
                                         retries += 1
                                         time.sleep(wait_time)
 
                                 else:
-                                    print(f' --- {response.status_code} {response.reason}. Reintentando petición')
+                                    st.write(f' --- {response.status_code} {response.reason}. Reintentando petición')
                                     retries += 1
                                     time.sleep(wait_time)                               
 
                             except requests.exceptions.RequestException as e:
-                                print(f" --- Could not request data. {e}")
+                                st.write(f" --- Could not request data. {e}")
                                 retries += 1
                                 time.sleep(wait_time)
 
                         else:
-                            print(f' -- No se pudo realizar la petición de datos. {response_json['descripcion']}')
+                            st.write(f' -- No se pudo realizar la petición de datos. {response_json['descripcion']}')
                             retries += 1 
                             time.sleep(wait_time)
 
                     else:
-                        print(f' -- Respuesta vacía. Reintentando petición')
+                        st.write(f' -- Respuesta vacía. Reintentando petición')
                         retries += 1
                         time.sleep(wait_time)
 
                 elif response.status_code == 404:
-                    print(f' - {response.status_code}. {response.reason}')
+                    st.write(f' - {response.status_code}. {response.reason}')
                 elif response.status_code == 401:
-                    print(f' - {response.status_code}. {response.reason}')
+                    st.write(f' - {response.status_code}. {response.reason}')
                 elif response.status_code == 429:
-                    print(f' - {response.status_code}. {response.reason}')
-                    print(' - Esperando 1 minuto para realizar de nuevo la petición')
+                    st.write(f' - {response.status_code}. {response.reason}')
+                    st.write(' - Esperando 1 minuto para realizar de nuevo la petición')
                     retries += 1
                     time.sleep(60)
 
             except requests.exceptions.RequestException as e:
-                print(f"Could not request to AEMET OpenData. {e}")
+                st.write(f"Could not request to AEMET OpenData. {e}")
                 retries += 1
                 time.sleep(wait_time)
 
@@ -174,5 +175,5 @@ def download_history_observation(date_ini,
     
         return data
     else:
-        print("No hay datos para esta estación en el período seleccionado.")
+        st.write("No hay datos para esta estación en el período seleccionado.")
         return pd.DataFrame()

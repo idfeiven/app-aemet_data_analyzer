@@ -42,6 +42,8 @@ if not stations_info.empty:
         st.session_state.stations_info = stations_info
         stations_info = st.session_state.stations_info
 
+    stations_info = st.session_state.stations_info
+
     province = st.selectbox(label = "Selecciona una provincia", options = stations_info["provincia"].unique())
     stations_info_province = stations_info[stations_info["provincia"] == province]
 
