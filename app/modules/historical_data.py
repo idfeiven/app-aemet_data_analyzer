@@ -4,6 +4,7 @@ import streamlit as st
 import plotly.express as px
 from download.stations import download_history_observation
 from download.info import download_stations_info
+import datetime
 
 
 def get_dates(date_range):
@@ -13,12 +14,10 @@ def get_dates(date_range):
         date_end = date_range[1].strftime("%Y-%m-%d")
         st.write(f"📅 Fecha inicio: {date_ini}")
         st.write(f"📅 Fecha fin: {date_end}")
+        # Devolver los valores como strings
+        return date_ini, date_end
     else:
-        date_ini, date_end = None, None
-        st.warning("Selecciona un rango de fechas válido.")
-
-    # Devolver los valores como strings
-    return date_ini, date_end
+        return None, None
 
 # Función para convertir DataFrame a Excel en memoria
 def to_excel(df):
@@ -52,8 +51,14 @@ if not stations_info.empty:
     st.write(f"Se descargarán los datos de la estación {station_id}")
 
     # Selector de rango de fechas
-    date_range = st.date_input("Selecciona el rango de fechas", [])
-    date_ini, date_end = get_dates(date_range)
+    today = datetime.datetime.today().date()
+    date_min = datetime.datetime(1920,1,1).date()
+    date_range = st.date_input("Selecciona el rango de fechas",
+                               (today - datetime.timedelta(days = 30), today),
+                               min_value=date_min,
+                               max_value=today,
+                               format="YYYY-MM-DD",)
+    # date_ini, date_end = get_dates(date_range)
 
     # Mostrar un campo de entrada para que el usuario ingrese la API Key
     api_key = st.text_input("Introduce tu API Key", type="password")
