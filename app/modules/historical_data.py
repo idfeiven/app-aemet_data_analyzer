@@ -58,7 +58,7 @@ if not stations_info.empty:
                                min_value=date_min,
                                max_value=today,
                                format="YYYY-MM-DD",)
-    # date_ini, date_end = get_dates(date_range)
+    date_ini, date_end = get_dates(date_range)
 
     # Mostrar un campo de entrada para que el usuario ingrese la API Key
     api_key = st.text_input("Introduce tu API Key", type="password")
