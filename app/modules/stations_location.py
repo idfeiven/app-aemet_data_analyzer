@@ -4,6 +4,7 @@ import streamlit as st
 import plotly.express as px
 from download.info import download_stations_info
 
+st.set_page_config(layout="wide")
 
 st.title("Estaciones meteorológicas de AEMET")
 

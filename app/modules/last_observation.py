@@ -31,6 +31,8 @@ def parse_stations_data(df):
     return df
 
 # -------------------------------MAIN PROGRAM-------------------------------------
+st.set_page_config(layout="wide")
+
 
 st.title("Última observación")
 st.write("Fuente: red de estaciones de AEMET.")
@@ -39,7 +41,7 @@ if "data_stations" not in st.session_state:
     st.session_state.data_stations = download_today_observation.download_today_observation()
 
 
-if not st.session_state.data_stations.empty:
+if not type(st.session_state.data_stations) == None:
 
     df = st.session_state.data_stations
     df = parse_stations_data(df)

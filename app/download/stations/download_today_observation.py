@@ -8,6 +8,7 @@ Author: Iván Domínguez Fuentes
 (c) 2025
 '''
 
+import time
 import yaml
 import requests
 import pandas as pd
@@ -28,40 +29,42 @@ def load_config_file():
 def get_today_observation(config):
 
     url = config['url_base'] + config['endpoints']['observation']['all'] + config['api_key']
+    
+    while True:
+        try:
+            response = requests.get(url)
 
-    try:
-        response = requests.get(url)
+            if response.status_code == 200:
+                print(f'{response.status_code}. {response.reason}')
+                json_response = response.json()
 
-        if response.status_code == 200:
-            print(f'{response.status_code}. {response.reason}')
-            json_response = response.json()
+                try: 
+                    url_data = json_response['datos']
 
-            try: 
-                url_data = json_response['datos']
+                    data = requests.get(url_data)
 
-                data = requests.get(url_data)
+                    if response.status_code == 200:
+                        print(f' - Datos obtenidos con éxito')
+                        data_json = data.json()
+                        df_data = pd.DataFrame(data_json)
+                        return df_data
+                    
+                    else:
+                        print(f'{response.status_code}. {response.reason}')
+                        time.sleep(5)
 
-                if response.status_code == 200:
-                    print(f' - Datos obtenidos con éxito')
-                    data_json = data.json()
-                    df_data = pd.DataFrame(data_json)
+                except:
+                    print(f'{url_data['descripcion']}')
+                    time.sleep(5)
+            
+            else:
+                print(f'{response.status_code}. {response.reason}')
+                time.sleep(5)
 
-                    return df_data
-                else:
-                    print(f'{response.status_code}. {response.reason}')
-                    return pd.DataFrame()
-
-            except:
-                print(f'{url_data['descripcion']}')
-                return pd.DataFrame()
+        except Exception as e:
+            print(f"Failed to request from AEMET OpenData. {e}")
+            time.sleep(5)
         
-        else:
-            print(f'{response.status_code}. {response.reason}')
-            return pd.DataFrame()
-
-    except Exception as e:
-        print(f"Failed to request from AEMET OpenData. {e}")
-        return pd.DataFrame()
 
 # -----------------------------MAIN PROGRAM----------------------------
 

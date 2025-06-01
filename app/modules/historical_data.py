@@ -26,6 +26,7 @@ def to_excel(df):
         df.to_excel(writer, index=False, sheet_name="Datos")  # Guardar en hoja "Datos"
     return output.getvalue()  # Obtener bytes del archivo
 
+st.set_page_config(layout="wide")
 
 st.title("Datos históricos")
 st.markdown("### En esta página puedes descargar datos históricos de las estaciones de AEMET")
