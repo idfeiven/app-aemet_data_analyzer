@@ -241,5 +241,5 @@ def download_history_observation(date_ini,
     
         return data
     else:
-        st.write("No hay datos para esta estación en el período seleccionado.")
+        st.warning("No hay datos para esta estación en el período seleccionado.")
         return pd.DataFrame()

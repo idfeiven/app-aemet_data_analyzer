@@ -4,6 +4,31 @@ import streamlit as st
 import plotly.express as px
 from download.info import download_stations_info
 
+# Función para mostrar mensaje en tiempo real
+def agregar_mensaje(msg: str) -> None:
+    """
+    Appends a message to Streamlit session state and displays all messages in a styled HTML box.
+
+    This function is used to log real-time messages in a scrollable, monospaced console-style
+    container within a Streamlit app. Messages are stored in `st.session_state.mensajes`.
+
+    Args:
+        msg (str): The message to append and display.
+
+    Notes:
+        Requires that `mensaje_container` is a previously defined Streamlit container and
+        that `st.session_state.mensajes` is a list initialized before use.
+    """
+    st.session_state.mensajes.append(msg)
+    html = f"""
+    <div style="background-color:#111; color:#0f0; padding:10px;
+                height:300px; overflow-y:auto; font-family:monospace;
+                font-size:14px; border:1px solid #444;">
+        {"<br>".join(st.session_state.mensajes)}
+    </div>
+    """
+    mensaje_container.markdown(html, unsafe_allow_html=True)
+
 st.set_page_config(layout="wide")
 
 st.title("Estaciones meteorológicas de AEMET")
@@ -14,7 +39,9 @@ st.write("Toda la información aquí expuesta pertenece a AEMET.")
 st.markdown("## Mapa de Estaciones Meteorológicas de AEMET")
 
 if "df_stations_info" not in st.session_state:
-    st.session_state.df_stations_info = download_stations_info.download_stations_info()
+    mensaje_container = st.empty()
+    st.session_state.mensajes = []
+    st.session_state.df_stations_info = download_stations_info.download_stations_info(agregar_mensaje)
 
 df = st.session_state.df_stations_info
 

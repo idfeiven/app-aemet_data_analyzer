@@ -12,7 +12,6 @@ import time
 import yaml
 import requests
 import pandas as pd
-import streamlit as st
 from pathlib import Path
 
 # todo fix false errors when downloading
@@ -37,7 +36,7 @@ def load_config_file() -> dict:
     return config
 
 
-def get_stations_info(config: dict) -> pd.DataFrame | None:
+def get_stations_info(config: dict, message: callable) -> pd.DataFrame | None:
     """
     Downloads the inventory information of weather stations from the AEMET API.
 
@@ -48,6 +47,7 @@ def get_stations_info(config: dict) -> pd.DataFrame | None:
             - url_base (str): Base URL of the API.
             - endpoints['stations']['inventory_all'] (str): Endpoint path for retrieving the station inventory.
             - api_key (str): API key string.
+        message (callable): Function to log messages (e.g., `st.write` for Streamlit).
 
     Returns:
         pd.DataFrame | None: A DataFrame containing station information if the download succeeds,
@@ -65,41 +65,41 @@ def get_stations_info(config: dict) -> pd.DataFrame | None:
     max_retries = 10
 
     while retries <= max_retries:
-        st.write(f'Intentos: {retries}')
+        message(f'Intentos: {retries}')
         
         try:
             response = requests.get(url)
 
             if response.status_code == 200:
-                st.write(f'{response.reason}. Successful request to the API')
+                message(f'{response.reason}. Successful request to the API')
                 response_json = response.json()
 
                 try:
                     data = requests.get(response_json['datos'])
 
                     if data.status_code == 200:
-                        st.write(f' - {data.reason}. Successful data request.')
+                        message(f' - {data.reason}. Successful data request.')
                         data_json = data.json()
 
                         df_stations_info = pd.DataFrame(data_json)
                         return df_stations_info
                     else:
-                        st.write(f' - {response.status_code}. {response.reason}')
+                        message(f' - {response.status_code}. {response.reason}')
                         retries += 1
                         time.sleep(5)
 
                 except Exception as e:
-                    st.write(f"{response.json()['descripcion']}")
+                    message(f"{response.json()['descripcion']}")
                     retries += 1
                     time.sleep(5)
 
             else:
-                st.write(f'{response.status_code}. {response.reason}')
+                message(f'{response.status_code}. {response.reason}')
                 retries += 1
                 time.sleep(5)
 
         except requests.exceptions.RequestException as e:
-            st.write(f'Failed to request to the API. {e}.')
+            message(f'Failed to request to the API. {e}.')
             retries += 1
             time.sleep(5)
 
@@ -157,17 +157,17 @@ def parse_stations_info(df_stations_info: pd.DataFrame):
 # -----------------------------MAIN PROGRAM----------------------------------
 
 
-def download_stations_info() -> pd.DataFrame | None:
+def download_stations_info(message: callable) -> pd.DataFrame | None:
     '''
     Main method for download stations info from AEMET.
     '''
     config = load_config_file()
-    df_stations_info = get_stations_info(config)
+    df_stations_info = get_stations_info(config, message)
 
     if len(df_stations_info) != 0:
         df_stations_info = parse_stations_info(df_stations_info)
     else:
-        st.write("Could not parse stations information.")
+        message("Could not parse stations information.")
 
     return df_stations_info
 

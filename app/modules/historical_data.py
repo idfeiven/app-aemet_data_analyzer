@@ -114,7 +114,8 @@ api_key not in st.session_state or \
 
 # Guardamos en caché la información de las estaciones
 if "stations_info" not in st.session_state:
-    st.session_state["stations_info"] = download_stations_info.download_stations_info()
+    mensaje_container = st.empty()
+    st.session_state["stations_info"] = download_stations_info.download_stations_info(agregar_mensaje)
 stations_info = st.session_state["stations_info"]
 
 # Si la petición de información de estaciones es exitosa y existen todos los campos
@@ -124,10 +125,14 @@ if len(stations_info) != 0:
     province = st.selectbox(label = "Selecciona una provincia", options = stations_info["provincia"].unique())
     stations_info_province = stations_info[stations_info["provincia"] == province]
 
-    station_name = st.selectbox(label = "Selecciona una estación", options = stations_info_province["nombre"].unique())
-    station_id = stations_info_province[stations_info_province["nombre"] == station_name]["indicativo"].values.flatten()[0]
-    st.write(f"Se descargarán los datos de la estación {station_id}")
-
+    station_name = st.multiselect(label = "Selecciona una estación", options = stations_info_province["nombre"].unique())
+    try:
+        station_id = stations_info_province[stations_info_province["nombre"].isin(station_name)]["indicativo"].values.flatten()
+        station_id = ','.join(station_id)
+        st.write(f"Se descargarán los datos de la/s estación/es {station_id}")
+    except Exception as e:
+        st.warning('Selecciona una o varias estaciones')
+        
     # Verificar si el campo no está vacío
     if api_key:
         st.success("API Key recibida con éxito.")
