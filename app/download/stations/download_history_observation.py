@@ -19,7 +19,17 @@ from dateutil.relativedelta import relativedelta
 
 # -----------------------------FUNCTIONS----------------------------
 
-def load_config_file():
+def load_config_file() -> dict:
+    """
+    Loads the YAML configuration file located in the `etc` folder.
+
+    Returns:
+        dict: Dictionary containing the configuration loaded from `config.yml`.
+
+    Raises:
+        FileNotFoundError: If the configuration file does not exist.
+        yaml.YAMLError: If an error occurs while parsing the YAML file.
+    """
     fpath = Path(__file__).parent.parent / "etc" / "config.yml"
 
     with open(fpath, 'r') as file:
@@ -28,8 +38,22 @@ def load_config_file():
     return config
 
 
-def get_dates_for_requests(date_ini, date_end):
+def get_dates_for_requests(date_ini: str, date_end: str) -> pd.DataFrame:
+    """
+    Splits the requested time interval into sub-intervals to comply with API limitations.
 
+    If the interval exceeds 6 months, it is divided into 6-month segments. Otherwise, 
+    a single interval is returned. Dates are formatted to the API's expected format.
+
+    Args:
+        date_ini (str): Start date in 'YYYY-MM-DD' format.
+        date_end (str): End date in 'YYYY-MM-DD' format.
+
+    Returns:
+        pd.DataFrame: A DataFrame with two columns:
+            - 'date_ini': List of initial dates for each request segment.
+            - 'date_end': List of final dates for each request segment.
+    """
     date_ini = pd.to_datetime(date_ini)
     date_ini = datetime(date_ini.year, date_ini.month, date_ini.day)
 
@@ -52,8 +76,21 @@ def get_dates_for_requests(date_ini, date_end):
         return dates
 
 
-def get_urls_for_requests(dates, station_id, config, api_key):
+def get_urls_for_requests(dates: pd.DataFrame, station_id: str, config: dict, api_key: str):
+    """
+    Generates the URLs needed to request climatological data from the AEMET API.
 
+    Args:
+        dates (pd.DataFrame): DataFrame containing 'date_ini' and 'date_end' columns.
+        station_id (str): The station identifier (IDEMA code).
+        config (dict): Dictionary with API configuration, including:
+            - 'url_base': Base URL for API requests.
+            - 'endpoints': Dictionary with endpoint templates.
+        api_key (str): AEMET API key.
+
+    Returns:
+        pd.DataFrame: DataFrame with a single column 'urls', containing formatted request URLs.
+    """
     urls = pd.DataFrame()
 
     config['api_key'] = f'/?api_key={api_key}'
@@ -67,11 +104,31 @@ def get_urls_for_requests(dates, station_id, config, api_key):
     return urls
 
 
-def get_historical_data(urls,
-                        max_retries,
-                        wait_time,
-                        message):
+def get_historical_data(urls: pd.DataFrame,
+                        max_retries: int,
+                        wait_time: int|float,
+                        message: callable):
+    """
+    Downloads historical data from the AEMET API using a list of URLs.
 
+    Each request is retried on failure up to `max_retries` times with a delay of `wait_time` seconds
+    between attempts. A custom `message` function is used to log progress or errors (e.g., `st.write`).
+
+    Args:
+        urls (pd.DataFrame): DataFrame with a column 'urls' containing the request URLs.
+        max_retries (int): Maximum number of retries per request.
+        wait_time (int | float): Delay in seconds between retries.
+        message (callable): Function used to display messages during the request process.
+
+    Returns:
+        pd.DataFrame: DataFrame with the concatenated historical data from successful requests.
+                      If no data is retrieved, an empty DataFrame is returned.
+
+    Notes:
+        - Handles specific HTTP status codes (200, 401, 404, 429).
+        - Ignores requests with no data available.
+        - Supports JSON payload validation and handles empty responses.
+    """
     count = 0
     data = pd.DataFrame()
 
@@ -167,6 +224,9 @@ def download_history_observation(date_ini,
                                  station_id,
                                  api_key,
                                  message):
+    '''
+    Main method for download_history_observation
+    '''
             
     config = load_config_file()
     dates = get_dates_for_requests(date_ini, date_end)

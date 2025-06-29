@@ -8,7 +8,20 @@ from download.stations import download_history_observation
 
 # -----------------------------------------------FUNCTIONS-----------------------------------
 
-def get_dates(date_range):
+def get_dates(date_range: tuple) -> tuple[str, str]:
+    """
+    Parses a tuple of datetime objects and returns start and end dates as formatted strings.
+
+    If the tuple is valid and contains two datetime objects, the function returns their
+    string representations in 'YYYY-MM-DD' format and displays them using Streamlit.
+
+    Args:
+        date_range (tuple): A tuple containing two datetime objects (start and end dates).
+
+    Returns:
+        tuple[str, str]: A tuple with start and end dates as strings.
+                         Returns (None, None) if input is not valid.
+    """
     # Verificar si el usuario ha seleccionado un rango válido
     if isinstance(date_range, tuple) and len(date_range) == 2:
         date_ini = date_range[0].strftime("%Y-%m-%d")
@@ -21,14 +34,39 @@ def get_dates(date_range):
         return None, None
 
 # Función para convertir DataFrame a Excel en memoria
-def to_excel(df):
+def to_excel(df: pd.DataFrame) -> bytes:
+    """
+    Converts a Pandas DataFrame to an in-memory Excel file in `.xlsx` format.
+
+    The resulting Excel file is written to memory using `openpyxl` and can be used
+    for download or further processing without saving to disk.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to convert.
+
+    Returns:
+        bytes: The byte content of the Excel file.
+    """
     output = io.BytesIO()  # Crear un buffer en memoria
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         df.to_excel(writer, index=False, sheet_name="Datos")  # Guardar en hoja "Datos"
     return output.getvalue()  # Obtener bytes del archivo
 
 # Función para mostrar mensaje en tiempo real
-def agregar_mensaje(msg):
+def agregar_mensaje(msg: str) -> None:
+    """
+    Appends a message to Streamlit session state and displays all messages in a styled HTML box.
+
+    This function is used to log real-time messages in a scrollable, monospaced console-style
+    container within a Streamlit app. Messages are stored in `st.session_state.mensajes`.
+
+    Args:
+        msg (str): The message to append and display.
+
+    Notes:
+        Requires that `mensaje_container` is a previously defined Streamlit container and
+        that `st.session_state.mensajes` is a list initialized before use.
+    """
     st.session_state.mensajes.append(msg)
     html = f"""
     <div style="background-color:#111; color:#0f0; padding:10px;

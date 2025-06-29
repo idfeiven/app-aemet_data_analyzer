@@ -8,8 +8,23 @@ st.cache_data.clear()
 
 # -----------------------------FUNCTIONS--------------------------------
 
-def parse_stations_data(df):
+def parse_stations_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Parses and cleans meteorological station data to prepare it for display or analysis.
 
+    This function performs the following operations:
+    - Converts the 'fint' column (timestamp) to datetime format and removes timezone info.
+    - Filters the DataFrame to only include rows corresponding to the most recent timestamp.
+    - Renames key columns to more descriptive, user-friendly labels, typically for display.
+
+    Args:
+        df (pd.DataFrame): The original DataFrame containing raw station data. It must include
+                           a column named 'fint' with timestamps and various meteorological variables.
+
+    Returns:
+        pd.DataFrame: A cleaned and formatted DataFrame containing only the latest available data,
+                      with renamed columns for readability.
+    """
     df = df.copy()
     df['fint'] = df['fint'].apply(pd.to_datetime)
     df['fint'] = df['fint'].dt.tz_localize(None)
@@ -31,7 +46,20 @@ def parse_stations_data(df):
     return df
 
 # Función para mostrar mensaje en tiempo real
-def agregar_mensaje(msg):
+def agregar_mensaje(msg: str) -> None:
+    """
+    Appends a message to Streamlit session state and displays all messages in a styled HTML box.
+
+    This function is used to log real-time messages in a scrollable, monospaced console-style
+    container within a Streamlit app. Messages are stored in `st.session_state.mensajes`.
+
+    Args:
+        msg (str): The message to append and display.
+
+    Notes:
+        Requires that `mensaje_container` is a previously defined Streamlit container and
+        that `st.session_state.mensajes` is a list initialized before use.
+    """
     st.session_state.mensajes.append(msg)
     html = f"""
     <div style="background-color:#111; color:#0f0; padding:10px;
