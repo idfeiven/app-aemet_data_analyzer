@@ -102,7 +102,7 @@ def download_stations_info():
     config = load_config_file()
     df_stations_info = get_stations_info(config)
 
-    if not df_stations_info.empty:
+    if len(df_stations_info) != 0:
         df_stations_info = parse_stations_info(df_stations_info)
     else:
         st.write("Could not parse stations information.")

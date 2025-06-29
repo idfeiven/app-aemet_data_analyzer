@@ -26,7 +26,7 @@ def load_config_file():
     return config
 
 
-def get_today_observation(config):
+def get_today_observation(config, message):
 
     url = config['url_base'] + config['endpoints']['observation']['all'] + config['api_key']
     
@@ -35,7 +35,7 @@ def get_today_observation(config):
             response = requests.get(url)
 
             if response.status_code == 200:
-                print(f'{response.status_code}. {response.reason}')
+                message(f'{response.status_code}. {response.reason}')
                 json_response = response.json()
 
                 try: 
@@ -44,33 +44,33 @@ def get_today_observation(config):
                     data = requests.get(url_data)
 
                     if response.status_code == 200:
-                        print(f' - Datos obtenidos con éxito')
+                        message(f' - Datos obtenidos con éxito')
                         data_json = data.json()
                         df_data = pd.DataFrame(data_json)
                         return df_data
                     
                     else:
-                        print(f'{response.status_code}. {response.reason}')
+                        message(f'{response.status_code}. {response.reason}')
                         time.sleep(5)
 
                 except:
-                    print(f'{url_data['descripcion']}')
+                    message(f'{url_data['descripcion']}')
                     time.sleep(5)
             
             else:
-                print(f'{response.status_code}. {response.reason}')
+                message(f'{response.status_code}. {response.reason}')
                 time.sleep(5)
 
         except Exception as e:
-            print(f"Failed to request from AEMET OpenData. {e}")
+            message(f"Failed to request from AEMET OpenData. {e}")
             time.sleep(5)
         
 
 # -----------------------------MAIN PROGRAM----------------------------
 
-def download_today_observation():
+def download_today_observation(message):
     
     config = load_config_file()
-    today_obs = get_today_observation(config)
+    today_obs = get_today_observation(config, message)
 
     return today_obs

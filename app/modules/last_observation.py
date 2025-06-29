@@ -30,6 +30,18 @@ def parse_stations_data(df):
 
     return df
 
+# Función para mostrar mensaje en tiempo real
+def agregar_mensaje(msg):
+    st.session_state.mensajes.append(msg)
+    html = f"""
+    <div style="background-color:#111; color:#0f0; padding:10px;
+                height:300px; overflow-y:auto; font-family:monospace;
+                font-size:14px; border:1px solid #444;">
+        {"<br>".join(st.session_state.mensajes)}
+    </div>
+    """
+    mensaje_container.markdown(html, unsafe_allow_html=True)
+
 # -------------------------------MAIN PROGRAM-------------------------------------
 st.set_page_config(layout="wide")
 
@@ -38,12 +50,15 @@ st.title("Última observación")
 st.write("Fuente: red de estaciones de AEMET.")
 
 if "data_stations" not in st.session_state:
-    st.session_state.data_stations = download_today_observation.download_today_observation()
+    mensaje_container = st.empty()
+    st.session_state.mensajes = []
+    st.session_state.data_stations = download_today_observation.download_today_observation(message = agregar_mensaje)
 
+df = st.session_state.data_stations
 
-if not type(st.session_state.data_stations) == None:
+if not type(df) == None:
 
-    df = st.session_state.data_stations
+    # df = st.session_state.data_stations
     df = parse_stations_data(df)
     cols_to_choose = ['Precipitación (mm)',
                       'Velocidad máxima (m/s)',

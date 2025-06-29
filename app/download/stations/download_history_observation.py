@@ -69,7 +69,8 @@ def get_urls_for_requests(dates, station_id, config, api_key):
 
 def get_historical_data(urls,
                         max_retries,
-                        wait_time):
+                        wait_time,
+                        message):
 
     count = 0
     data = pd.DataFrame()
@@ -78,11 +79,11 @@ def get_historical_data(urls,
 
         count+=1
         retries = 1
-        st.write(f'Peticiones realizadas: {count}/{len(urls)}')
+        message(f'Peticiones realizadas: {count}/{len(urls)}')
 
         while retries <= max_retries:
 
-            st.write(f'Intento {retries}/{max_retries}')
+            message(f'Intento {retries}/{max_retries}')
 
             try:
                 response = requests.get(url, timeout = 10)
@@ -104,51 +105,54 @@ def get_historical_data(urls,
                                     if data_response.text.strip():
                                         
                                         if type(data_json) == dict and data_json['estado']:
-                                            st.write(f' --- No se pudo realizar la petición de datos. {data_json['descripcion']}')
+                                            message(f' --- No se pudo realizar la petición de datos. {data_json['descripcion']}')
                                             retries += 1
                                             time.sleep(wait_time)
 
                                         else:
                                             data = pd.concat([data, pd.DataFrame(data_json)], axis = 0)
-                                            st.write('--- Datos descargados con éxito.')
+                                            message('--- Datos descargados con éxito.')
                                             break
                                     else:
-                                        st.write(f' --- Respuesta vacía. Reintentando petición')
+                                        message(f' --- Respuesta vacía. Reintentando petición')
                                         retries += 1
                                         time.sleep(wait_time)
 
                                 else:
-                                    st.write(f' --- {response.status_code} {response.reason}. Reintentando petición')
+                                    message(f' --- {response.status_code} {response.reason}. Reintentando petición')
                                     retries += 1
                                     time.sleep(wait_time)                               
 
                             except requests.exceptions.RequestException as e:
-                                st.write(f" --- Could not request data. {e}")
+                                message(f" --- No se pudo realizar la petición de datos. {e}")
                                 retries += 1
                                 time.sleep(wait_time)
 
                         else:
-                            st.write(f' -- No se pudo realizar la petición de datos. {response_json['descripcion']}')
-                            retries += 1 
-                            time.sleep(wait_time)
+                            message(f' -- No se pudo realizar la petición de datos. {response_json['descripcion']}')
+                            if response_json['descripcion'].startswith("No hay datos"): # No hay datos que satisfagan esos criterios, nos vamos a la siguiente petición
+                                break
+                            else:
+                                retries += 1 
+                                time.sleep(wait_time)
 
                     else:
-                        st.write(f' -- Respuesta vacía. Reintentando petición')
+                        message(f' -- Respuesta vacía. Reintentando petición')
                         retries += 1
                         time.sleep(wait_time)
 
                 elif response.status_code == 404:
-                    st.write(f' - {response.status_code}. {response.reason}')
+                    message(f' - {response.status_code}. {response.reason}')
                 elif response.status_code == 401:
-                    st.write(f' - {response.status_code}. {response.reason}')
+                    message(f' - {response.status_code}. {response.reason}')
                 elif response.status_code == 429:
-                    st.write(f' - {response.status_code}. {response.reason}')
-                    st.write(' - Esperando 1 minuto para realizar de nuevo la petición')
+                    message(f' - {response.status_code}. {response.reason}')
+                    message(' - Esperando 1 minuto para realizar de nuevo la petición')
                     retries += 1
                     time.sleep(60)
 
             except requests.exceptions.RequestException as e:
-                st.write(f"Could not request to AEMET OpenData. {e}")
+                message(f"Could not request to AEMET OpenData. {e}")
                 retries += 1
                 time.sleep(wait_time)
 
@@ -161,14 +165,16 @@ def get_historical_data(urls,
 def download_history_observation(date_ini,
                                  date_end,
                                  station_id,
-                                 api_key):
-
+                                 api_key,
+                                 message):
+            
     config = load_config_file()
     dates = get_dates_for_requests(date_ini, date_end)
     urls = get_urls_for_requests(dates, station_id, config, api_key)
     data = get_historical_data(urls,
                             max_retries = 20,
-                            wait_time = 10)
+                            wait_time = 10,
+                            message=message)
     if not data.empty:
         data.reset_index(inplace = True)
         data.drop("index", axis = 1, inplace = True)
