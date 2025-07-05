@@ -3,7 +3,7 @@ import time
 import datetime
 import pandas as pd
 import streamlit as st
-from download.info import download_stations_info
+from download.stations import download_stations_info
 from download.stations import download_history_observation
 
 # -----------------------------------------------FUNCTIONS-----------------------------------
@@ -81,7 +81,7 @@ def agregar_mensaje(msg: str) -> None:
 # st.set_page_config(layout="wide")
 
 st.title("Datos históricos")
-st.markdown("### En esta página puedes descargar datos históricos de las estaciones de AEMET")
+st.markdown("### En esta página puedes descargar la climatología de datos diarios de las estaciones meteorológicas de AEMET")
 st.write("Toda la información expuesta aquí pertenece a AEMET. Esta página es simplemente divulgativa.")
 st.write("Fuente de los datos: AEMET OpenData")
 st.warning("Los tiempos de descarga pueden variar mucho en función del rendimiento de la API AEMET OpenData. Se estima la descarga completa entre 20-40 minutos.")

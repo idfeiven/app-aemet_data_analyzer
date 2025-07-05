@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 import plotly.express as px
-from download.info import download_stations_info
+from download.stations import download_stations_info
 
 # Función para mostrar mensaje en tiempo real
 def agregar_mensaje(msg: str) -> None:

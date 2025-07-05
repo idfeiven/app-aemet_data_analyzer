@@ -3,8 +3,8 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 from download.stations import download_today_observation
-
-st.cache_data.clear()
+from download.stations import download_stations_info
+# st.cache_data.clear()
 
 # -----------------------------FUNCTIONS--------------------------------
 
@@ -28,7 +28,6 @@ def parse_stations_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df['fint'] = df['fint'].apply(pd.to_datetime)
     df['fint'] = df['fint'].dt.tz_localize(None)
-    df = df[df['fint'] == df['fint'].iloc[-1]]
     dict_rename = dict({'prec': 'Precipitación (mm)',
                         'vmax': 'Velocidad máxima (m/s)',
                         'vv': 'Velocidad media (m/s)',
@@ -73,16 +72,24 @@ def agregar_mensaje(msg: str) -> None:
 # -------------------------------MAIN PROGRAM-------------------------------------
 st.set_page_config(layout="wide")
 
+st.title("Últimas observaciones")
+st.markdown("## Mapa interactivo")
+st.write("Fuente: red de estaciones meteorológicas de AEMET.")
 
-st.title("Última observación")
-st.write("Fuente: red de estaciones de AEMET.")
-
+# Cacheamos info y datos
 if "data_stations" not in st.session_state:
     mensaje_container = st.empty()
     st.session_state.mensajes = []
     st.session_state.data_stations = download_today_observation.download_today_observation(message = agregar_mensaje)
 
+if "stations_info" not in st.session_state:
+    mensaje_container = st.empty()
+    st.session_state.mensajes = []
+    st.session_state.stations_info = download_stations_info.download_stations_info(message = agregar_mensaje)
+
+
 df = st.session_state.data_stations
+df_info = st.session_state.stations_info
 
 if not type(df) == None:
 
@@ -104,26 +111,72 @@ if not type(df) == None:
     st.write(f"Última actualización: {df['fint'].iloc[-1]}")
 
     col = st.selectbox(label = "Selecciona una variable", options = df[cols_to_choose].columns)
+    datetime = st.selectbox(label = "Selecciona un instante de tiempo", options = df['fint'].unique(), index = 0)
 
-    fig = px.scatter_mapbox(df,
+    # Cacheamos la variable elegida
+    if "col" not in st.session_state or "datetime" not in st.session_state or\
+        st.session_state.get("col") != col or st.session_state.get("datetime") != datetime:
+        st.session_state.col = col
+        st.session_state.datetime = datetime
+
+    df_filtered = df[df['fint'] == datetime]
+
+    fig = px.scatter_mapbox(df_filtered,
                             lat = "lat",
                             lon = "lon",
                             hover_name = "ubi",
                             hover_data = col,
                             color = col,
                             color_continuous_scale = "Viridis",
+                            title = f"{col} {datetime} en las estaciones de AEMET",
                             size_max=15,
                             zoom=5)
-    
+       
     # Cambiar el tipo de marcador y tamaño del mapa
-    fig.update_traces(marker=dict(size=12, color=df[col], colorscale="Viridis"))
-
+    fig.update_traces(marker=dict(size=12,
+                                  color=df_filtered[col],
+                                  colorscale="Viridis"))
 
     # Usar un estilo de mapa para la visualización
     fig.update_layout(mapbox_style="open-street-map", 
                   margin={"r":0,"t":0,"l":0,"b":0},
                   width=2000, height=600)
     
+    # Cacheamos el mapa interactivo
+    if "fig" not in st.session_state or st.session_state.get("fig") != fig:
+        st.session_state.fig = fig
+
     st.plotly_chart(fig, use_container_width=True)
+
 else:
     st.write("No se ha podido obtener datos de las estaciones de AEMET")
+
+
+if not type(df_info) == None:
+
+   st.markdown("## Gráficas de datos horarios")
+
+   province = st.selectbox(label = "Selecciona una provincia", options = df_info['provincia'].unique(), index = 0)
+   station_name = st.selectbox(label = "Selecciona una estación", options = df_info[df_info['provincia'] == province]['nombre'].unique(), index = 0) 
+   
+   # Cacheamos provincia e id de estacion elegida
+   if "province" not in st.session_state or "station_name" not in st.session_state or \
+       st.session_state.get("province") != province or st.session_state.get("station_name") != station_name:
+            st.session_state.province = province
+            st.session_state.station_name = station_name
+
+   df.rename({"idema": "indicativo"}, axis = 1, inplace=True)
+   df_station = df.merge(df_info, how = "left")
+   df_station = df_station[df_station['nombre'] == station_name]
+
+   if not df_station.empty:
+       col_stn = st.selectbox(label = "Selecciona una variable", options = df_station[cols_to_choose].columns, key = "variable_station")
+       
+       # Cacheamos la variable elegida
+       if "col_stn" not in st.session_state or st.session_state.get("col_stn") != col_stn:
+            st.session_state.col_stn = col_stn
+       
+       fig = px.line(df_station, x='fint', y=col_stn, title=f"{col_stn} en {station_name} ({province})")
+       st.plotly_chart(fig, use_container_width=True)
+   else:
+       st.write("No se han encontrado datos para la estación seleccionada.")
