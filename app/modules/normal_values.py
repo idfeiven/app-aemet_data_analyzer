@@ -65,11 +65,12 @@ else:
         mensaje_container = st.empty()
         st.session_state.mensajes = []
         st.session_state.normal_vals, st.session_state.metadata = download_normal_values.download_normal_values(api_key, station_id, agregar_mensaje)
+        normal_vals = st.session_state.normal_vals
+        metadata = st.session_state.metadata
 
     st.markdown(f"### Valores normales de la estación {station_name} ({station_id}) en {province}")
-
-    st.dataframe(st.session_state.normal_vals, use_container_width=True)
+    st.dataframe(normal_vals, use_container_width=True)
 
     st.markdown("### Metadatos de la estación")
-    st.dataframe(st.session_state.metadata, use_container_width=True)
+    st.dataframe(metadata, use_container_width=True)
 

@@ -98,6 +98,9 @@ date_ini, date_end = get_dates(date_range)
 
 # Mostrar un campo de entrada para que el usuario ingrese la API Key
 api_key = st.text_input("Introduce tu API Key", type="password")
+if not api_key:
+    st.warning("Por favor, introduce tu API Key. Si no tienes una API key visita https://opendata.aemet.es/centrodedescargas/altaUsuario?")
+    st.stop()
 
 # Guardamos en caché las fechas introducidas o los cambios,
 # así como el valor de la API key
@@ -132,9 +135,10 @@ if len(stations_info) != 0:
         st.write(f"Se descargarán los datos de la/s estación/es {station_id}")
     except Exception as e:
         st.warning('Selecciona una o varias estaciones')
+        st.stop()
         
     # Verificar si el campo no está vacío
-    if api_key:
+    if api_key and station_id:
         st.success("API Key recibida con éxito.")
 
         st.write("Seguimiento del proceso de descarga")
@@ -160,10 +164,7 @@ if len(stations_info) != 0:
             )
 
         else:
-            st.warning("No existen datos para esta estación en el período seleccionado.")
-
-    else:
-        st.warning("Por favor, introduce tu API Key. Si no tienes una API key visita https://opendata.aemet.es/centrodedescargas/altaUsuario?")
+            st.warning("No existen datos para esta estación en el período seleccionado.")      
 
 else:
     st.warning("No se ha podido obtener información de las estaciones de AEMET")

@@ -152,9 +152,13 @@ def download_normal_values(api_key: str, station_id: str, message: callable) -> 
     config = load_config_file()
     df_normals, metadata = get_station_normal_vals(config, api_key, station_id, message)
 
-    try: 
+    try:
         df_normals = parse_normal_values(df_normals)
         info_df = parse_metadata(metadata)
+        dict_rename = {k:info_df[info_df.id == k]["descripcion"].values[0] for k in info_df.id}
+        df_normals.rename(dict_rename, axis=1, inplace=True)
+        df_normals = df_normals.loc[:,~df_normals.columns.duplicated()]
+        
     except Exception as e:
         print(f"Error parsing data: {e}")
         df_normals = pd.DataFrame()
