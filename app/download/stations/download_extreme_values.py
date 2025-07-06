@@ -80,42 +80,45 @@ def get_station_extreme_vals(config: dict, api_key: str, station_id: str, parame
                 response_json = response.json()
 
                 try:
-                    data = requests.get(response_json['datos'])
+                    response_data = requests.get(response_json['datos'])
                     
-                    if data.status_code == 200:
-                        message(f' - {data.reason}. Successful data request.')
-                        data_json = data.json()
-
-                        df_extr = pd.DataFrame(data_json)
+                    if response_data.status_code == 200:
+                        message(f' -- {response_data.reason}. Successful data request.')
+                        data_json = response_data.json()
+                        try:
+                            df_extr = pd.DataFrame(data_json)
+                        except ValueError as e:
+                            message(f" --- Incomplete data. {e}")
+                            df_extr = pd.DataFrame()
                     else:
-                        message(f' - {response.status_code}. {response.reason}')
+                        message(f' -- {response_data.status_code}. {response_data.reason}')
                         retries += 1
                         time.sleep(5)
 
-                except Exception as e:
-                    message(f" - {response.json()['descripcion']}")
+                except requests.exceptions.RequestException as e:
+                    message(f" -- {e}")
                     retries += 1
                     time.sleep(5)
                 
                 try:
-                    metadata = requests.get(response_json['metadatos'])
-                    if data.status_code == 200:
-                        message(f' - {data.reason}. Successful metadata request.')
-                        metadata_json = metadata.json()
+                    response_metadata = requests.get(response_json['metadatos'])
+                    if response_metadata.status_code == 200:
+                        message(f' -- {response_metadata.reason}. Successful metadata request.')
+                        metadata_json = response_metadata.json()
                         metadata = pd.DataFrame(metadata_json)
 
                         return df_extr, metadata
                     else:
-                        message(f' - {response.status_code}. {response.reason}')
+                        message(f' -- {response_metadata.status_code}. {response_metadata.reason}')
                         retries += 1
                         time.sleep(5)
-                except Exception as e:
-                    message(f" - {response.json()['descripcion']}")
+                except requests.exceptions.RequestException as e:
+                    message(f" -- {e}")
                     retries += 1
                     time.sleep(5)
 
             else:
-                message(f'{response.status_code}. {response.reason}')
+                message(f' - {response.status_code}. {response.reason}')
                 retries += 1
                 time.sleep(5)
 

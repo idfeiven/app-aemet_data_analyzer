@@ -22,8 +22,8 @@ def agregar_mensaje(msg: str) -> None:
     st.session_state.mensajes.append(msg)
     html = f"""
     <div style="background-color:#111; color:#0f0; padding:10px;
-                height:300px; overflow-y:auto; font-family:monospace;
-                font-size:14px; border:1px solid #444;">
+                height:150px; overflow-y:auto; font-family:monospace;
+                font-size:16px; border:1px solid #444;">
         {"<br>".join(st.session_state.mensajes)}
     </div>
     """
@@ -54,12 +54,6 @@ elif variable == "Precipitación":
 elif variable == "Velocidad del viento":
     parameter = "V"
 
-# # Cacheamos provincia e id de estacion elegida
-# if "province" not in st.session_state or "station_name" not in st.session_state or \
-#     st.session_state.get("province") != province or st.session_state.get("station_name") != station_name:
-#         st.session_state.province = province
-#         st.session_state.station_name = station_name
-
 # Mostrar un campo de entrada para que el usuario ingrese la API Key
 api_key = st.text_input("Introduce tu API Key", type="password")
 if not api_key:
@@ -74,9 +68,6 @@ else:
         st.session_state.get("parameter") != parameter:
         mensaje_container = st.empty()
         st.session_state.mensajes = []
-    #     st.session_state.extreme_vals, st.session_state.metadata = download_extreme_values.download_extreme_values(api_key, station_id, parameter, agregar_mensaje)
-    #     extreme_vals = st.session_state.extreme_vals
-    #     metadata = st.session_state.metadata
         extreme_vals, metadata = download_extreme_values.download_extreme_values(api_key, station_id, parameter, agregar_mensaje)
 
     st.markdown(f"### Valores extremos de {variable} de la estación {station_name} ({station_id}) en {province}")

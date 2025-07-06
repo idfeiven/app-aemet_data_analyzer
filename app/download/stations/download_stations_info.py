@@ -88,8 +88,8 @@ def get_stations_info(config: dict, message: callable) -> pd.DataFrame | None:
                         retries += 1
                         time.sleep(5)
 
-                except Exception as e:
-                    message(f"{response.json()['descripcion']}")
+                except requests.exceptions.RequestException as e:
+                    message(f" - {e}")
                     retries += 1
                     time.sleep(5)
 

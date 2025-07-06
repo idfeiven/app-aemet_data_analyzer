@@ -82,34 +82,43 @@ def get_station_normal_vals(config: dict, api_key: str, station_id: str, message
                     data = requests.get(response_json['datos'])
                     
                     if data.status_code == 200:
-                        message(f' - {data.reason}. Successful data request.')
+                        message(f' -- {data.reason}. Successful data request.')
                         data_json = data.json()
 
-                        df_normals = pd.DataFrame(data_json)
+                        try:
+                            df_normals = pd.DataFrame(data_json)
+                        except Exception as e:
+                            message(f" --- Error parsing data: {e}")
+                            return pd.DataFrame(), pd.DataFrame()
                     else:
-                        message(f' - {response.status_code}. {response.reason}')
+                        message(f' -- {response.status_code}. {response.reason}')
                         retries += 1
                         time.sleep(5)
 
-                except Exception as e:
-                    message(f" - {response.json()['descripcion']}")
+                except requests.exceptions.RequestException as e:
+                    message(f" - {e}")
                     retries += 1
                     time.sleep(5)
                 
                 try:
                     metadata = requests.get(response_json['metadatos'])
                     if data.status_code == 200:
-                        message(f' - {data.reason}. Successful metadata request.')
+                        message(f' -- {data.reason}. Successful metadata request.')
                         metadata_json = metadata.json()
-                        metadata = pd.DataFrame(metadata_json)
 
-                        return df_normals, metadata
+                        try:
+                            metadata = pd.DataFrame(metadata_json)
+                            return df_normals, metadata
+                        except Exception as e:
+                            message(f" --- Error parsing metadata: {e}")
+                            return pd.DataFrame(), pd.DataFrame()
+
                     else:
-                        message(f' - {response.status_code}. {response.reason}')
+                        message(f' -- {response.status_code}. {response.reason}')
                         retries += 1
                         time.sleep(5)
-                except Exception as e:
-                    message(f" - {response.json()['descripcion']}")
+                except requests.exceptions.RequestException as e:
+                    message(f" - {e}")
                     retries += 1
                     time.sleep(5)
 

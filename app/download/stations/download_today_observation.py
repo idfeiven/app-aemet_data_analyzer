@@ -62,12 +62,16 @@ def get_today_observation(config, message):
     """
     url = config['url_base'] + config['endpoints']['observation']['all'] + config['api_key']
     
-    while True:
+    retries = 0
+    max_retries = 10  # Set a maximum number of retries to avoid infinite loops
+
+    while retries <= max_retries:
+        message(f'Attempt {retries + 1} to download today\'s observations...')
         try:
             response = requests.get(url)
 
             if response.status_code == 200:
-                message(f'{response.status_code}. {response.reason}')
+                message(f' - {response.status_code}. {response.reason}')
                 json_response = response.json()
 
                 try: 
@@ -75,26 +79,30 @@ def get_today_observation(config, message):
 
                     data = requests.get(url_data)
 
-                    if response.status_code == 200:
-                        message(f' - Datos obtenidos con éxito')
+                    if data.status_code == 200:
+                        message(f' -- Datos obtenidos con éxito')
                         data_json = data.json()
                         df_data = pd.DataFrame(data_json)
                         return df_data
                     
                     else:
-                        message(f'{response.status_code}. {response.reason}')
+                        message(f' -- {data.status_code}. {data.reason}')
+                        retries += 1
                         time.sleep(5)
 
-                except:
-                    message(f'{url_data['descripcion']}')
+                except requests.exceptions.RequestException as e:
+                    message(f' -- {e}')
+                    retries += 1
                     time.sleep(5)
             
             else:
-                message(f'{response.status_code}. {response.reason}')
+                message(f' - {response.status_code}. {response.reason}')
+                retries += 1
                 time.sleep(5)
 
-        except Exception as e:
-            message(f"Failed to request from AEMET OpenData. {e}")
+        except requests.exceptions.RequestException as e:
+            message(f" - Failed to request to AEMET OpenData. {e}")
+            retries += 1
             time.sleep(5)
         
 

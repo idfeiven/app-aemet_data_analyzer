@@ -70,8 +70,8 @@ def agregar_mensaje(msg: str) -> None:
     st.session_state.mensajes.append(msg)
     html = f"""
     <div style="background-color:#111; color:#0f0; padding:10px;
-                height:300px; overflow-y:auto; font-family:monospace;
-                font-size:14px; border:1px solid #444;">
+                height:150px; overflow-y:auto; font-family:monospace;
+                font-size:16px; border:1px solid #444;">
         {"<br>".join(st.session_state.mensajes)}
     </div>
     """
