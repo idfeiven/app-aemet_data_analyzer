@@ -69,6 +69,30 @@ def agregar_mensaje(msg: str) -> None:
     """
     mensaje_container.markdown(html, unsafe_allow_html=True)
 
+
+def get_colormap_variable(variable: str) -> str:
+    """
+    Returns a color map based on the variable name.
+
+    Args:
+        variable (str): The name of the variable to determine the color map.
+
+    Returns:
+        str: The name of the color map to be used for the variable.
+    """
+    if variable in ['Precipitación (mm)', 'Espesor de nieve (cm)']:
+        return "BuPu"
+    elif variable in ['Velocidad máxima (m/s)', 'Velocidad media (m/s)']:
+        return "turbo"
+    elif variable in ['Dirección media del viento (º)', 'Dirección racha máxima (º)']:
+        return "hsv"
+    elif variable in ['Humedad relativa (%)']:
+        return "Viridis_r"
+    elif variable in ['Presión absoluta (hPa)', 'Presión al nivel del mar (hPa)']:
+        return "rdpu"
+    else:
+        return "Viridis"
+
 # -------------------------------MAIN PROGRAM-------------------------------------
 st.set_page_config(layout="wide")
 
@@ -111,8 +135,14 @@ if not type(df) == None:
     st.write(f"Última actualización: {df['fint'].iloc[-1]}")
 
     col = st.selectbox(label = "Selecciona una variable", options = df[cols_to_choose].columns)
-    datetime = st.selectbox(label = "Selecciona un instante de tiempo", options = df['fint'].unique(), index = 0)
+    # datetime = st.selectbox(label = "Selecciona un instante de tiempo", options = df['fint'].unique(), index = 0)
 
+    datetime = st.select_slider(
+        "Selecciona una hora",
+        options=df['fint'].unique(),
+        value=df['fint'].unique()[-1]
+    )
+    
     # Cacheamos la variable elegida
     if "col" not in st.session_state or "datetime" not in st.session_state or\
         st.session_state.get("col") != col or st.session_state.get("datetime") != datetime:
@@ -121,13 +151,13 @@ if not type(df) == None:
 
     df_filtered = df[df['fint'] == datetime]
 
-    fig = px.scatter_mapbox(df_filtered,
+    fig = px.scatter_mapbox(df_filtered.dropna(subset=[col]),
                             lat = "lat",
                             lon = "lon",
                             hover_name = "ubi",
                             hover_data = col,
                             color = col,
-                            color_continuous_scale = "Viridis",
+                            color_continuous_scale = get_colormap_variable(col),
                             title = f"{col} {datetime} en las estaciones de AEMET",
                             size_max=15,
                             zoom=5)

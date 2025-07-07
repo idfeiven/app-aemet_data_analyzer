@@ -65,7 +65,7 @@ def get_stations_info(config: dict, message: callable) -> pd.DataFrame | None:
     max_retries = 10
 
     while retries <= max_retries:
-        message(f'Intentos: {retries}')
+        message(f'Attempt {retries + 1} to download stations information...')
         
         try:
             response = requests.get(url)

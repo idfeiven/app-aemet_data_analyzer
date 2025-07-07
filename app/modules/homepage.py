@@ -11,6 +11,7 @@ st.markdown("""
 - **Últimas observaciones**: Consulta las últimas observaciones meteorológicas de las estaciones.
 - **Datos históricos**: Explora los datos históricos de las estaciones meteorológicas.
 - **Valores normales (1991-2020)**: Consulta los valores normales de las variables meteorológicas para el periodo 1991-2020.
+- **Valores extremos**: Analiza los valores extremos de temperatura, precipitación y viento de las estaciones meteorológicas de AEMET.
 """)
 st.write("Para más información, visita la [página oficial de AEMET](https://www.aemet.es/).")
 st.write("Si encuentras útil esta aplicación, tienes dudas o sugerencias, puedes contactar conmigo a través de mis redes: [Bluesky](https://bsky.app/profile/idfeiven.bsky.social) o [LinkedIn](https://www.linkedin.com/in/iv%C3%A1n-dom%C3%ADnguez-fuentes-5578a22ab/)")

@@ -70,7 +70,7 @@ def get_station_extreme_vals(config: dict, api_key: str, station_id: str, parame
     max_retries = 10
 
     while retries <= max_retries:
-        message(f'Intentos: {retries}')
+        message(f'Attempt {retries + 1} to download extreme values...')
         
         try:
             response = requests.get(url)

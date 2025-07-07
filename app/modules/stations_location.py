@@ -50,10 +50,11 @@ if not st.session_state.df_stations_info.empty:
                             lat="latitud",
                             lon="longitud",
                             hover_name="nombre",
+                            hover_data=["provincia", "altitud", "indicativo"],
                             zoom=5)
     
     # Cambiar el tipo de marcador y aumentar el tamaño
-    fig.update_traces(marker=dict(size=15, color="red"))
+    fig.update_traces(marker=dict(size=15, color="black"))
 
     # Usar un estilo de mapa para la visualización
     fig.update_layout(mapbox_style="open-street-map", 
