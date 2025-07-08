@@ -5,29 +5,29 @@ import plotly.express as px
 from download.stations import download_stations_info
 
 # Función para mostrar mensaje en tiempo real
-def agregar_mensaje(msg: str) -> None:
+def add_message(msg: str) -> None:
     """
     Appends a message to Streamlit session state and displays all messages in a styled HTML box.
 
     This function is used to log real-time messages in a scrollable, monospaced console-style
-    container within a Streamlit app. Messages are stored in `st.session_state.mensajes`.
+    container within a Streamlit app. Messages are stored in `st.session_state.messages`.
 
     Args:
         msg (str): The message to append and display.
 
     Notes:
-        Requires that `mensaje_container` is a previously defined Streamlit container and
-        that `st.session_state.mensajes` is a list initialized before use.
+        Requires that `message_container` is a previously defined Streamlit container and
+        that `st.session_state.messages` is a list initialized before use.
     """
-    st.session_state.mensajes.append(msg)
+    st.session_state.messages.append(msg)
     html = f"""
     <div style="background-color:#111; color:#0f0; padding:10px;
                 height:150px; overflow-y:auto; font-family:monospace;
                 font-size:16px; border:1px solid #444;">
-        {"<br>".join(st.session_state.mensajes)}
+        {"<br>".join(st.session_state.messages)}
     </div>
     """
-    mensaje_container.markdown(html, unsafe_allow_html=True)
+    message_container.markdown(html, unsafe_allow_html=True)
 
 st.set_page_config(layout="wide")
 
@@ -39,9 +39,9 @@ st.write("Toda la información aquí expuesta pertenece a AEMET.")
 st.markdown("## Mapa de Estaciones Meteorológicas de AEMET")
 
 if "df_stations_info" not in st.session_state:
-    mensaje_container = st.empty()
-    st.session_state.mensajes = []
-    st.session_state.df_stations_info = download_stations_info.download_stations_info(agregar_mensaje)
+    message_container = st.empty()
+    st.session_state.messages = []
+    st.session_state.df_stations_info = download_stations_info.download_stations_info(add_message)
 
 df = st.session_state.df_stations_info
 

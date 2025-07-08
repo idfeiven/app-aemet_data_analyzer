@@ -45,12 +45,12 @@ def parse_stations_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 # Función para mostrar mensaje en tiempo real
-def agregar_mensaje(msg: str) -> None:
+def add_message(msg: str) -> None:
     """
     Appends a message to Streamlit session state and displays all messages in a styled HTML box.
 
     This function is used to log real-time messages in a scrollable, monospaced console-style
-    container within a Streamlit app. Messages are stored in `st.session_state.mensajes`.
+    container within a Streamlit app. Messages are stored in `st.session_state.messages`.
 
     Args:
         msg (str): The message to append and display.
@@ -59,15 +59,15 @@ def agregar_mensaje(msg: str) -> None:
         Requires that `mensaje_container` is a previously defined Streamlit container and
         that `st.session_state.mensajes` is a list initialized before use.
     """
-    st.session_state.mensajes.append(msg)
+    st.session_state.messages.append(msg)
     html = f"""
     <div style="background-color:#111; color:#0f0; padding:10px;
                 height:150px; overflow-y:auto; font-family:monospace;
                 font-size:16px; border:1px solid #444;">
-        {"<br>".join(st.session_state.mensajes)}
+        {"<br>".join(st.session_state.messages)}
     </div>
     """
-    mensaje_container.markdown(html, unsafe_allow_html=True)
+    message_container.markdown(html, unsafe_allow_html=True)
 
 
 def get_colormap_variable(variable: str) -> str:
@@ -93,6 +93,28 @@ def get_colormap_variable(variable: str) -> str:
     else:
         return "Viridis"
 
+
+def get_cols_to_choose() -> list:
+    """
+    Returns a list of columns that can be selected for visualization.
+
+    Returns:
+        list: A list of column names that represent different meteorological variables.
+    """
+    return ['Precipitación (mm)',
+            'Velocidad máxima (m/s)',
+            'Velocidad media (m/s)',
+            'Dirección media del viento (º)',
+            'Dirección racha máxima (º)',
+            'Humedad relativa (%)',
+            'Temperatura (ºC)',
+            'Temperatura máxima (ºC)',
+            'Temperatura mínima (ºC)',
+            'Presión absoluta (hPa)',
+            'Presión al nivel del mar (hPa)',
+            'Espesor de nieve (cm)']
+
+
 # -------------------------------MAIN PROGRAM-------------------------------------
 st.set_page_config(layout="wide")
 
@@ -102,15 +124,14 @@ st.write("Fuente: red de estaciones meteorológicas de AEMET.")
 
 # Cacheamos info y datos
 if "data_stations" not in st.session_state:
-    mensaje_container = st.empty()
-    st.session_state.mensajes = []
-    st.session_state.data_stations = download_today_observation.download_today_observation(message = agregar_mensaje)
+    message_container = st.empty()
+    st.session_state.messages = []
+    st.session_state.data_stations = download_today_observation.download_today_observation(message = add_message)
 
 if "stations_info" not in st.session_state:
-    mensaje_container = st.empty()
-    st.session_state.mensajes = []
-    st.session_state.stations_info = download_stations_info.download_stations_info(message = agregar_mensaje)
-
+    message_container = st.empty()
+    st.session_state.messages = []
+    st.session_state.stations_info = download_stations_info.download_stations_info(message = add_message)
 
 df = st.session_state.data_stations
 df_info = st.session_state.stations_info
@@ -119,26 +140,14 @@ if not type(df) == None:
 
     # df = st.session_state.data_stations
     df = parse_stations_data(df)
-    cols_to_choose = ['Precipitación (mm)',
-                      'Velocidad máxima (m/s)',
-                      'Velocidad media (m/s)',
-                      'Dirección media del viento (º)',
-                      'Dirección racha máxima (º)',
-                      'Humedad relativa (%)',
-                      'Temperatura (ºC)',
-                      'Temperatura máxima (ºC)',
-                      'Temperatura mínima (ºC)',
-                      'Presión absoluta (hPa)',
-                      'Presión al nivel del mar (hPa)',
-                      'Espesor de nieve (cm)']
+    cols_to_choose = get_cols_to_choose()
 
     st.write(f"Última actualización: {df['fint'].iloc[-1]}")
-
     col = st.selectbox(label = "Selecciona una variable", options = df[cols_to_choose].columns)
     # datetime = st.selectbox(label = "Selecciona un instante de tiempo", options = df['fint'].unique(), index = 0)
 
     datetime = st.select_slider(
-        "Selecciona una hora",
+        "Selecciona una hora (UTC)",
         options=df['fint'].unique(),
         value=df['fint'].unique()[-1]
     )
@@ -206,7 +215,11 @@ if not type(df_info) == None:
        if "col_stn" not in st.session_state or st.session_state.get("col_stn") != col_stn:
             st.session_state.col_stn = col_stn
        
-       fig = px.line(df_station, x='fint', y=col_stn, title=f"{col_stn} en {station_name} ({province})")
-       st.plotly_chart(fig, use_container_width=True)
+       fig_line = px.line(df_station, x='fint', y=col_stn, title=f"{col_stn} en {station_name} ({province})")
+       st.plotly_chart(fig_line, use_container_width=True)
+
+       # Cacheamos la figura
+       if "fig_line" not in st.session_state or st.session_state.get("fig_line") != fig_line:
+           st.session_state.fig_line = fig_line
    else:
        st.write("No se han encontrado datos para la estación seleccionada.")
