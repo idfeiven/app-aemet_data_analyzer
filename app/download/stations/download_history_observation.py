@@ -174,7 +174,10 @@ def get_historical_data(urls: pd.DataFrame,
                                         message(f' --- Respuesta vacía. Reintentando petición')
                                         retries += 1
                                         time.sleep(wait_time)
-
+                                        
+                                elif data_response.status_code == 404:
+                                    message(f' --- {data_response.status_code} {data_response.reason}. Siguiente petición')
+                                    continue
                                 else:
                                     message(f' --- {response.status_code} {response.reason}. Reintentando petición')
                                     retries += 1
@@ -200,8 +203,10 @@ def get_historical_data(urls: pd.DataFrame,
 
                 elif response.status_code == 404:
                     message(f' - {response.status_code}. {response.reason}')
+                    continue
                 elif response.status_code == 401:
                     message(f' - {response.status_code}. {response.reason}')
+                    continue
                 elif response.status_code == 429:
                     message(f' - {response.status_code}. {response.reason}')
                     message(' - Esperando 1 minuto para realizar de nuevo la petición')
