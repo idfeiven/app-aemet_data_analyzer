@@ -160,7 +160,7 @@ if not type(df) == None:
 
     df_filtered = df[df['fint'] == datetime]
 
-    fig = px.scatter_mapbox(df_filtered.dropna(subset=[col]),
+    fig = px.scatter_mapbox(df_filtered,
                             lat = "lat",
                             lon = "lon",
                             hover_name = "ubi",
