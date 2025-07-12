@@ -4,7 +4,7 @@ import streamlit as st
 import plotly.express as px
 from download.stations import download_today_observation
 from download.stations import download_stations_info
-# st.cache_data.clear()
+st.cache_data.clear()
 
 # -----------------------------FUNCTIONS--------------------------------
 

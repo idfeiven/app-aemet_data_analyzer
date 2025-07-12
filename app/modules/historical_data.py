@@ -84,7 +84,7 @@ st.title("Datos históricos")
 st.markdown("### En esta página puedes descargar la climatología de datos diarios de las estaciones meteorológicas de AEMET")
 st.write("Toda la información expuesta aquí pertenece a AEMET. Esta página es simplemente divulgativa.")
 st.write("Fuente de los datos: AEMET OpenData")
-st.warning("Los tiempos de descarga pueden variar mucho en función del rendimiento de la API AEMET OpenData. Se estima la descarga completa entre 20-40 minutos.")
+st.warning("Los tiempos de descarga pueden variar mucho en función del rendimiento de la API AEMET OpenData. Se estima la descarga completa entre 20-40 minutos para series de datos muy largas.")
 
 # Selector de rango de fechas
 today = datetime.datetime.today().date()
