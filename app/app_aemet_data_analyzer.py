@@ -10,10 +10,13 @@ historical_data = st.Page("modules/historical_data.py", title = "Datos históric
 climate_plotter = st.Page("modules/climate_plotter.py", title = "Gráficos climáticos")
 normal_values = st.Page("modules/normal_values.py", title = "Valores normales (1991-2020)")
 extreme_values = st.Page("modules/extreme_values.py", title = "Valores extremos")
+warnings = st.Page("modules/warnings.py", title = "Avisos meteorológicos de AEMET")
 
 pages = {
     "Inicio": [homepage],
-    "Observación": [stations_location, last_obs, historical_data, climate_plotter, normal_values, extreme_values]}
+    "Observación": [stations_location, last_obs, historical_data, climate_plotter, normal_values, extreme_values],
+    "Avisos": [warnings]
+}
 
 pg = st.navigation(pages)
 

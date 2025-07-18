@@ -18,3 +18,7 @@ endpoints:
     climatology_all: /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/todasestaciones
     normal_values: /api/valores/climatologicos/normales/estacion/{idema}
     extreme_values: /api/valores/climatologicos/valoresextremos/parametro/{parametro}/estacion/{idema}
+  
+  warnings:
+    current: /api/avisos_cap/ultimoelaborado/area/{area}
+    
