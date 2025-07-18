@@ -102,8 +102,11 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                     <div style="margin-top: 5px; font-family: Arial; font-weight: bold; font-size: 14px;">{warn['type_warning']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Aviso:</strong> {warn['severity']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Probabilidad:</strong> {warn['probability']}</div>
-                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">Activo desde {warn['datetime_ini']} hasta {warn['datetime_end']}</div>
-                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['description']}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">Activo desde</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_ini']}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">hasta</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_end']}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Comentario:</strong>{warn['description']}</div>
                 </div>
                 """
                 popup_all = popup_all + html_popup
