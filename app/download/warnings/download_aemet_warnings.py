@@ -141,11 +141,13 @@ def download_aemet_warnings(area: str, message: callable) -> str:
         for file in directorio.iterdir():
             if file.is_file():
                 file.unlink()
+        get_current_warnings(config, area, message)
+        extract_all_tar_files(directorio)
     else:
         # Si no existe, lo creamos (opcional, si necesitas que exista después)
         directorio.mkdir(parents=True, exist_ok=True)
+        get_current_warnings(config, area, message)
+        extract_all_tar_files(directorio)
 
-    get_current_warnings(config, area, message)
-    extract_all_tar_files(Path(__file__).parent / "data")
 
 
