@@ -4,3 +4,5 @@ streamlit
 pathlib
 pyYAML
 openpyxl
+folium
+streamlit_folium
