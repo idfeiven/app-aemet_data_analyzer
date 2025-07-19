@@ -42,7 +42,11 @@ if "warnings" not in st.session_state:
     message_container = st.empty()
     st.session_state.messages = []
     download_aemet_warnings.download_aemet_warnings(area='esp', message=add_message)
-    st.session_state.warnings = warnings_plotter.get_df_warnings()
+    try:
+        st.session_state.warnings = warnings_plotter.get_df_warnings()
+    except Exception as e:
+        st.error(f'Error found when getting warnings data: {e}')
+        st.stop()
 
 df_warnings = st.session_state.warnings
 
@@ -56,7 +60,12 @@ else:
         options=df_warnings['date_ini'].unique(),
         key="selected_date"
     )
-    warnings_map = warnings_plotter.plot_aemet_warnings(date, df_warnings)
+
+    try:
+        warnings_map = warnings_plotter.plot_aemet_warnings(date, df_warnings)
+    except Exception as e:
+        st.error(f'Error found when generating interactive map: {e}')
+        st.stop()
     # Actualizar mapa solo si cambia la fecha o aún no está guardado
     if "warnings_map" not in st.session_state or  "date" not in st.session_state or st.session_state.date != date:
         st.session_state.date = date

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250719065253.733005ATTA19191752907973</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-19T06:52:53-00:00</sent>
+  <status>Actual</status>
+  <msgType>Update</msgType>
+  <scope>Public</scope>
+  <references>http://www.aemet.es,2.49.0.0.724.0.ES.20250718170646.733005ATTA19191752858406,2025-07-18T17:06:46-00:00</references>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de temperaturas máximas de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-19T08:52:53+02:00</effective>
+    <onset>2025-07-19T13:00:00+02:00</onset>
+    <expires>2025-07-19T20:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de temperaturas máximas de nivel amarillo. Campo de Cartagena y Mazarrón</headline>
+    <description>Temperatura máxima: 36 ºC.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Temperatura máxima;36 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Campo de Cartagena y Mazarrón</areaDesc>
+      <polygon>37.85,-1.27 37.81,-1.19 37.79,-1.16 37.75,-1.14 37.74,-1.1 37.72,-1.08 37.72,-1.05 37.76,-1.06 37.74,-1.099999 37.75,-1.139999 37.81,-1.03 37.85,-1.0 37.82,-0.98 37.83,-0.94 37.86,-0.86 37.88,-0.85 37.85,-0.78 37.85,-0.76 37.82,-0.76 37.81,-0.8 37.78,-0.8 37.75,-0.85 37.72,-0.86 37.66,-0.8 37.63,-0.74 37.6,-0.73 37.6,-0.77 37.58,-0.82 37.58,-0.85 37.56,-0.92 37.58,-0.97 37.58,-1.07 37.55,-1.13 37.57,-1.2 37.58,-1.25 37.56,-1.27 37.56,-1.32 37.52,-1.4 37.56,-1.46 37.58,-1.45 37.62,-1.46 37.68,-1.46 37.72,-1.37 37.74,-1.28 37.83,-1.29 37.85,-1.27</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733005</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate high-temperature warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-19T08:52:53+02:00</effective>
+    <onset>2025-07-19T13:00:00+02:00</onset>
+    <expires>2025-07-19T20:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate high-temperature warning. Campo de Cartagena y Mazarrón</headline>
+    <description>Maximum temperature: 36 ºC.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Maximum temperature;36 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Campo de Cartagena y Mazarrón</areaDesc>
+      <polygon>37.85,-1.27 37.81,-1.19 37.79,-1.16 37.75,-1.14 37.74,-1.1 37.72,-1.08 37.72,-1.05 37.76,-1.06 37.74,-1.099999 37.75,-1.139999 37.81,-1.03 37.85,-1.0 37.82,-0.98 37.83,-0.94 37.86,-0.86 37.88,-0.85 37.85,-0.78 37.85,-0.76 37.82,-0.76 37.81,-0.8 37.78,-0.8 37.75,-0.85 37.72,-0.86 37.66,-0.8 37.63,-0.74 37.6,-0.73 37.6,-0.77 37.58,-0.82 37.58,-0.85 37.56,-0.92 37.58,-0.97 37.58,-1.07 37.55,-1.13 37.57,-1.2 37.58,-1.25 37.56,-1.27 37.56,-1.32 37.52,-1.4 37.56,-1.46 37.58,-1.45 37.62,-1.46 37.68,-1.46 37.72,-1.37 37.74,-1.28 37.83,-1.29 37.85,-1.27</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733005</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

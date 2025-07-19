@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250717092110.659004COCO18221752744070</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-17T09:21:10-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de costeros de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>CO;Costeros</value>
+    </eventCode>
+    <effective>2025-07-17T10:21:10+01:00</effective>
+    <onset>2025-07-18T05:00:00+01:00</onset>
+    <expires>2025-07-18T22:59:59+01:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de costeros de nivel amarillo. Costa - Este, sur y oeste de Gran Canaria</headline>
+    <description>Viento del Nordeste de 50 a 61 km/h (fuerza 7), afectando principalmente al sureste y oeste de Gran Canaria, sureste de Tenerife y canal entre islas.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>CO;Costeros;</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>mayor 70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Este, sur y oeste de Gran Canaria</areaDesc>
+      <polygon>27.9,-16.18 28.02,-16.15 28.21,-16.05 28.27,-16.0 28.28,-15.99 28.279494505494505,-15.989450549450549 28.05,-15.74 28.02,-15.79 28.02,-15.81 27.97,-15.83 27.91,-15.83 27.83,-15.79 27.75,-15.67 27.73,-15.6 27.76,-15.56 27.79,-15.49 27.81,-15.42 27.85,-15.41 27.86,-15.38 27.89,-15.39 27.97,-15.38 27.99,-15.37 28.03,-15.39 28.32,-15.07 28.23,-15.04 27.99,-14.99 27.92,-14.99 27.86,-15.0 27.79,-15.02 27.67,-15.09 27.62,-15.12 27.57,-15.16 27.54,-15.21 27.51,-15.27 27.44,-15.44 27.41,-15.52 27.41,-15.59 27.41,-15.67 27.43,-15.74 27.47,-15.81 27.59,-16.01 27.63,-16.07 27.69,-16.11 27.75,-16.14 27.81,-16.16 27.9,-16.18</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>659004C</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate coastalevent warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>CO;Costeros</value>
+    </eventCode>
+    <effective>2025-07-17T10:21:10+01:00</effective>
+    <onset>2025-07-18T05:00:00+01:00</onset>
+    <expires>2025-07-18T22:59:59+01:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate coastalevent warning. Costa - Este, sur y oeste de Gran Canaria</headline>
+    <description>Viento del Nordeste de 50 a 61 km/h (fuerza 7), afectando principalmente al sureste y oeste de Gran Canaria, sureste de Tenerife y canal entre islas.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>CO;Coastal Event;</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>mayor 70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Este, sur y oeste de Gran Canaria</areaDesc>
+      <polygon>27.9,-16.18 28.02,-16.15 28.21,-16.05 28.27,-16.0 28.28,-15.99 28.279494505494505,-15.989450549450549 28.05,-15.74 28.02,-15.79 28.02,-15.81 27.97,-15.83 27.91,-15.83 27.83,-15.79 27.75,-15.67 27.73,-15.6 27.76,-15.56 27.79,-15.49 27.81,-15.42 27.85,-15.41 27.86,-15.38 27.89,-15.39 27.97,-15.38 27.99,-15.37 28.03,-15.39 28.32,-15.07 28.23,-15.04 27.99,-14.99 27.92,-14.99 27.86,-15.0 27.79,-15.02 27.67,-15.09 27.62,-15.12 27.57,-15.16 27.54,-15.21 27.51,-15.27 27.44,-15.44 27.41,-15.52 27.41,-15.59 27.41,-15.67 27.43,-15.74 27.47,-15.81 27.59,-16.01 27.63,-16.07 27.69,-16.11 27.75,-16.14 27.81,-16.16 27.9,-16.18</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>659004C</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

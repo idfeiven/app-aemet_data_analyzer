@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718164228.694304ATTA19191752856948</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T16:42:28-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de temperaturas máximas de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T18:42:28+02:00</effective>
+    <onset>2025-07-19T13:00:00+02:00</onset>
+    <expires>2025-07-19T20:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de temperaturas máximas de nivel amarillo. Litoral sur de Tarragona</headline>
+    <description>Temperatura máxima: 34 ºC. Los valores más elevados se esperan en el sur de la zona.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Temperatura máxima;34 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Litoral sur de Tarragona</areaDesc>
+      <polygon>41.18,1.04 41.18,1.06 41.14,1.09 41.09,1.1 41.07,1.12 41.06,1.05 41.03,0.97 40.92,0.84 40.87,0.79 40.85,0.75 40.8,0.7 40.77,0.73 40.78,0.78 40.7,0.88 40.68,0.84 40.65,0.77 40.59,0.71 40.64,0.74 40.64,0.73 40.62,0.6 40.57,0.54 40.52,0.52 40.55,0.44 40.58,0.43 40.61,0.39 40.61,0.33 40.66,0.35 40.74,0.44 40.74,0.51 40.76,0.61 40.81,0.61 40.87,0.67 40.9,0.61 40.93,0.61 40.95,0.67 40.93,0.75 40.94,0.82 41.0,0.78 41.05,0.81 41.03,0.85 41.03,0.91 41.06,0.92 41.1,0.9 41.13,0.92 41.11,0.95 41.14,1.02 41.18,1.04</polygon>
+      <polygon>40.59,0.71 40.56,0.65 40.57,0.6 40.59,0.67 40.59,0.71</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>694304</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate high-temperature warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T18:42:28+02:00</effective>
+    <onset>2025-07-19T13:00:00+02:00</onset>
+    <expires>2025-07-19T20:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate high-temperature warning. Litoral sur de Tarragona</headline>
+    <description>Maximum temperature: 34 ºC. Los valores más elevados se esperan en el sur de la zona.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Maximum temperature;34 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Litoral sur de Tarragona</areaDesc>
+      <polygon>41.18,1.04 41.18,1.06 41.14,1.09 41.09,1.1 41.07,1.12 41.06,1.05 41.03,0.97 40.92,0.84 40.87,0.79 40.85,0.75 40.8,0.7 40.77,0.73 40.78,0.78 40.7,0.88 40.68,0.84 40.65,0.77 40.59,0.71 40.64,0.74 40.64,0.73 40.62,0.6 40.57,0.54 40.52,0.52 40.55,0.44 40.58,0.43 40.61,0.39 40.61,0.33 40.66,0.35 40.74,0.44 40.74,0.51 40.76,0.61 40.81,0.61 40.87,0.67 40.9,0.61 40.93,0.61 40.95,0.67 40.93,0.75 40.94,0.82 41.0,0.78 41.05,0.81 41.03,0.85 41.03,0.91 41.06,0.92 41.1,0.9 41.13,0.92 41.11,0.95 41.14,1.02 41.18,1.04</polygon>
+      <polygon>40.59,0.71 40.56,0.65 40.57,0.6 40.59,0.67 40.59,0.71</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>694304</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

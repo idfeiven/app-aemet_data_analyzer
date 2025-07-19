@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718170551.612903ATTA20191752858351</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T17:05:51-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de temperaturas máximas de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T19:05:51+02:00</effective>
+    <onset>2025-07-20T13:00:00+02:00</onset>
+    <expires>2025-07-20T20:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de temperaturas máximas de nivel amarillo. Sol y Guadalhorce</headline>
+    <description>Temperatura máxima: 36 ºC.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Temperatura máxima;36 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Sol y Guadalhorce</areaDesc>
+      <polygon>36.43,-5.35 36.49,-5.29 36.52,-5.27 36.52,-5.23 36.48,-5.21 36.54,-5.16 36.54,-5.14 36.61,-5.06 36.67,-5.03 36.73,-4.99 36.76,-4.95 36.77,-4.9 36.81,-4.88 36.85,-4.89 36.87,-4.82 36.86,-4.78 36.92,-4.77 36.92,-4.73 36.96,-4.67 36.96,-4.64 36.91,-4.66 36.89,-4.58 36.91,-4.49 36.88,-4.49 36.84,-4.45 36.85,-4.4 36.89,-4.36 36.85,-4.29 36.82,-4.27 36.75,-4.31 36.71,-4.31 36.72,-4.39 36.72,-4.42 36.6,-4.51 36.58,-4.53 36.58,-4.56 36.56,-4.61 36.51,-4.64 36.49,-4.7 36.49,-4.75 36.51,-4.87 36.5,-4.93 36.48,-4.98 36.47,-4.99 36.45,-5.08 36.42,-5.16 36.37,-5.22 36.31,-5.25 36.34,-5.27 36.33,-5.32 36.4,-5.34 36.43,-5.35</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>612903</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate high-temperature warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T19:05:51+02:00</effective>
+    <onset>2025-07-20T13:00:00+02:00</onset>
+    <expires>2025-07-20T20:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate high-temperature warning. Sol y Guadalhorce</headline>
+    <description>Maximum temperature: 36 ºC.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Maximum temperature;36 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Sol y Guadalhorce</areaDesc>
+      <polygon>36.43,-5.35 36.49,-5.29 36.52,-5.27 36.52,-5.23 36.48,-5.21 36.54,-5.16 36.54,-5.14 36.61,-5.06 36.67,-5.03 36.73,-4.99 36.76,-4.95 36.77,-4.9 36.81,-4.88 36.85,-4.89 36.87,-4.82 36.86,-4.78 36.92,-4.77 36.92,-4.73 36.96,-4.67 36.96,-4.64 36.91,-4.66 36.89,-4.58 36.91,-4.49 36.88,-4.49 36.84,-4.45 36.85,-4.4 36.89,-4.36 36.85,-4.29 36.82,-4.27 36.75,-4.31 36.71,-4.31 36.72,-4.39 36.72,-4.42 36.6,-4.51 36.58,-4.53 36.58,-4.56 36.56,-4.61 36.51,-4.64 36.49,-4.7 36.49,-4.75 36.51,-4.87 36.5,-4.93 36.48,-4.98 36.47,-4.99 36.45,-5.08 36.42,-5.16 36.37,-5.22 36.31,-5.25 36.34,-5.27 36.33,-5.32 36.4,-5.34 36.43,-5.35</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>612903</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718170551.645403ATTA20171752858351</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T17:05:51-00:00</sent>
+  <status>Actual</status>
+  <msgType>Update</msgType>
+  <scope>Public</scope>
+  <references>http://www.aemet.es,2.49.0.0.724.0.ES.20250718093205.645403ATTA20171752831125,2025-07-18T09:32:05-00:00</references>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de temperaturas máximas de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Possible</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T19:05:51+02:00</effective>
+    <onset>2025-07-20T12:00:00+02:00</onset>
+    <expires>2025-07-20T18:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de temperaturas máximas de nivel amarillo. Interior de Mallorca</headline>
+    <description>Temperatura máxima: 36 ºC.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Temperatura máxima;36 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>10%-40%</value>
+    </parameter>
+    <area>
+      <areaDesc>Interior de Mallorca</areaDesc>
+      <polygon>39.81,2.93 39.76,2.95 39.73,3.0 39.74,3.02 39.68,3.11 39.7,3.16 39.7,3.23 39.68,3.25 39.65,3.18 39.63,3.16 39.55,3.16 39.53,3.1 39.48,3.06 39.46,3.01 39.46,2.97 39.52,2.97 39.53,2.94 39.52,2.89 39.55,2.83 39.57,2.85 39.64,2.78 39.66,2.74 39.71,2.74 39.74,2.8 39.82,2.9 39.81,2.93</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>645403</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate high-temperature warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Possible</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T19:05:51+02:00</effective>
+    <onset>2025-07-20T12:00:00+02:00</onset>
+    <expires>2025-07-20T18:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate high-temperature warning. Interior de Mallorca</headline>
+    <description>Maximum temperature: 36 ºC.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Maximum temperature;36 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>10%-40%</value>
+    </parameter>
+    <area>
+      <areaDesc>Interior de Mallorca</areaDesc>
+      <polygon>39.81,2.93 39.76,2.95 39.73,3.0 39.74,3.02 39.68,3.11 39.7,3.16 39.7,3.23 39.68,3.25 39.65,3.18 39.63,3.16 39.55,3.16 39.53,3.1 39.48,3.06 39.46,3.01 39.46,2.97 39.52,2.97 39.53,2.94 39.52,2.89 39.55,2.83 39.57,2.85 39.64,2.78 39.66,2.74 39.71,2.74 39.74,2.8 39.82,2.9 39.81,2.93</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>645403</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718215001.73VV73COCO21221752875401</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T21:50:01-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de costeros de nivel verde</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>CO;Costeros</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de costeros de nivel verde. CCAA</headline>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Valle del Guadalentín, Lorca y Águilas</areaDesc>
+      <polygon>37.2,-1.14 37.2,-1.17 37.15,-1.24 37.11,-1.35 37.37,-1.63 37.4,-1.59 37.41,-1.55 37.43,-1.52 37.44,-1.48 37.48,-1.46 37.52,-1.4 37.2,-1.14</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733004C</value>
+      </geocode>
+    </area>
+    <area>
+      <areaDesc>Costa - Campo de Cartagena y Mazarrón</areaDesc>
+      <polygon>37.85,-0.76 37.84,-0.74 37.78,-0.29 37.69,-0.29 37.64,-0.3 37.58,-0.3 37.52,-0.31 37.46,-0.34 37.4,-0.39 37.35,-0.44 37.32,-0.51 37.29,-0.59 37.24,-0.79 37.22,-0.87 37.22,-0.96 37.2,-1.08 37.2,-1.14 37.52,-1.4 37.56,-1.32 37.56,-1.27 37.58,-1.25 37.57,-1.2 37.55,-1.13 37.58,-1.07 37.58,-0.97 37.56,-0.92 37.58,-0.85 37.58,-0.82 37.6,-0.77 37.6,-0.73 37.63,-0.74 37.66,-0.8 37.72,-0.86 37.75,-0.85 37.78,-0.8 37.81,-0.8 37.82,-0.76 37.85,-0.76</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733005C</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Minor coastalevent warning</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>CO;Costeros</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Minor coastalevent warning. CCAA</headline>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Valle del Guadalentín, Lorca y Águilas</areaDesc>
+      <polygon>37.2,-1.14 37.2,-1.17 37.15,-1.24 37.11,-1.35 37.37,-1.63 37.4,-1.59 37.41,-1.55 37.43,-1.52 37.44,-1.48 37.48,-1.46 37.52,-1.4 37.2,-1.14</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733004C</value>
+      </geocode>
+    </area>
+    <area>
+      <areaDesc>Costa - Campo de Cartagena y Mazarrón</areaDesc>
+      <polygon>37.85,-0.76 37.84,-0.74 37.78,-0.29 37.69,-0.29 37.64,-0.3 37.58,-0.3 37.52,-0.31 37.46,-0.34 37.4,-0.39 37.35,-0.44 37.32,-0.51 37.29,-0.59 37.24,-0.79 37.22,-0.87 37.22,-0.96 37.2,-1.08 37.2,-1.14 37.52,-1.4 37.56,-1.32 37.56,-1.27 37.58,-1.25 37.57,-1.2 37.55,-1.13 37.58,-1.07 37.58,-0.97 37.56,-0.92 37.58,-0.85 37.58,-0.82 37.6,-0.77 37.6,-0.73 37.63,-0.74 37.66,-0.8 37.72,-0.86 37.75,-0.85 37.78,-0.8 37.81,-0.8 37.82,-0.76 37.85,-0.76</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733005C</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

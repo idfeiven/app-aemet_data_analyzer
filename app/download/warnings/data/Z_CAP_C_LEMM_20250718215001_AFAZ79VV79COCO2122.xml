@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718215001.79VV79COCO21221752875401</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T21:50:01-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de costeros de nivel verde</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>CO;Costeros</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de costeros de nivel verde. CCAA</headline>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Melilla</areaDesc>
+      <polygon>35.27,-2.93 35.32,-2.95 35.36,-2.96 35.42,-2.99 35.35,-3.02 35.29,-3.07 35.25,-3.17 35.2,-3.31 35.19,-3.36 35.22,-3.37 35.29,-3.38 35.36,-3.37 35.43,-3.34 35.52,-3.28 35.57,-3.23 35.61,-3.16 35.64,-3.08 35.65,-3.0 35.65,-2.92 35.64,-2.84 35.61,-2.76 35.58,-2.7 35.53,-2.64 35.44,-2.56 35.38,-2.53 35.32,-2.52 35.25,-2.52 35.19,-2.54 35.13,-2.57 35.1,-2.59 35.11,-2.68 35.14,-2.75 35.18,-2.81 35.17,-2.82 35.12,-2.78 35.13,-2.83 35.14,-2.88 35.17,-2.91 35.2,-2.91 35.26,-2.91 35.27,-2.93</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>795201C</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Minor coastalevent warning</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>CO;Costeros</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Minor coastalevent warning. CCAA</headline>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Melilla</areaDesc>
+      <polygon>35.27,-2.93 35.32,-2.95 35.36,-2.96 35.42,-2.99 35.35,-3.02 35.29,-3.07 35.25,-3.17 35.2,-3.31 35.19,-3.36 35.22,-3.37 35.29,-3.38 35.36,-3.37 35.43,-3.34 35.52,-3.28 35.57,-3.23 35.61,-3.16 35.64,-3.08 35.65,-3.0 35.65,-2.92 35.64,-2.84 35.61,-2.76 35.58,-2.7 35.53,-2.64 35.44,-2.56 35.38,-2.53 35.32,-2.52 35.25,-2.52 35.19,-2.54 35.13,-2.57 35.1,-2.59 35.11,-2.68 35.14,-2.75 35.18,-2.81 35.17,-2.82 35.12,-2.78 35.13,-2.83 35.14,-2.88 35.17,-2.91 35.2,-2.91 35.26,-2.91 35.27,-2.93</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>795201C</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718215001.78VV78NENV21221752875401</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T21:50:01-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de nevadas de nivel verde</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>NE;Nevadas</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de nevadas de nivel verde. CCAA</headline>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Ceuta</areaDesc>
+      <polygon>35.91,-5.38 35.89,-5.33 35.87,-5.34 35.88,-5.37 35.91,-5.38</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>785101</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Minor snow warning</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>NE;Nevadas</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Minor snow warning. CCAA</headline>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Ceuta</areaDesc>
+      <polygon>35.91,-5.38 35.89,-5.33 35.87,-5.34 35.88,-5.37 35.91,-5.38</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>785101</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

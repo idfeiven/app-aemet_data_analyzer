@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718215001.733003ATTA21191752875401</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T21:50:01-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de temperaturas máximas de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T13:00:00+02:00</onset>
+    <expires>2025-07-21T20:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de temperaturas máximas de nivel amarillo. Vega del Segura</headline>
+    <description>Temperatura máxima: 38 ºC.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Temperatura máxima;38 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Vega del Segura</areaDesc>
+      <polygon>37.95,-1.73 37.99,-1.67 38.06,-1.61 38.16,-1.63 38.19,-1.59 38.22,-1.58 38.31,-1.59 38.38,-1.48 38.37,-1.45 38.34,-1.35 38.31,-1.32 38.32,-1.25 38.29,-1.2 38.32,-1.12 38.35,-1.08 38.34,-1.03 38.32,-0.99 38.26,-0.97 38.2,-0.99 38.14,-1.04 38.08,-1.02 38.01,-0.96 37.95,-0.92 37.88,-0.85 37.86,-0.86 37.83,-0.94 37.82,-0.98 37.85,-1.0 37.81,-1.03 37.75,-1.14 37.79,-1.16 37.81,-1.19 37.85,-1.27 37.91,-1.28 37.86,-1.35 37.91,-1.41 37.89,-1.5 37.9,-1.6 37.86,-1.65 37.9,-1.67 37.95,-1.73</polygon>
+      <polygon>37.76,-1.06 37.72,-1.05 37.72,-1.08 37.74,-1.1 37.76,-1.06</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733003</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate high-temperature warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T13:00:00+02:00</onset>
+    <expires>2025-07-21T20:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate high-temperature warning. Vega del Segura</headline>
+    <description>Maximum temperature: 38 ºC.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Maximum temperature;38 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Vega del Segura</areaDesc>
+      <polygon>37.95,-1.73 37.99,-1.67 38.06,-1.61 38.16,-1.63 38.19,-1.59 38.22,-1.58 38.31,-1.59 38.38,-1.48 38.37,-1.45 38.34,-1.35 38.31,-1.32 38.32,-1.25 38.29,-1.2 38.32,-1.12 38.35,-1.08 38.34,-1.03 38.32,-0.99 38.26,-0.97 38.2,-0.99 38.14,-1.04 38.08,-1.02 38.01,-0.96 37.95,-0.92 37.88,-0.85 37.86,-0.86 37.83,-0.94 37.82,-0.98 37.85,-1.0 37.81,-1.03 37.75,-1.14 37.79,-1.16 37.81,-1.19 37.85,-1.27 37.91,-1.28 37.86,-1.35 37.91,-1.41 37.89,-1.5 37.9,-1.6 37.86,-1.65 37.9,-1.67 37.95,-1.73</polygon>
+      <polygon>37.76,-1.06 37.72,-1.05 37.72,-1.08 37.74,-1.1 37.76,-1.06</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>733003</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250717083140.614102ATTA18191752741100</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-17T08:31:40-00:00</sent>
+  <status>Actual</status>
+  <msgType>Update</msgType>
+  <scope>Public</scope>
+  <references>http://www.aemet.es,2.49.0.0.724.0.ES.20250716094402.614102ATTA18191752659042,2025-07-16T09:44:02-00:00</references>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de temperaturas máximas de nivel amarillo</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-17T10:31:40+02:00</effective>
+    <onset>2025-07-18T13:00:00+02:00</onset>
+    <expires>2025-07-18T20:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de temperaturas máximas de nivel amarillo. Campiña sevillana</headline>
+    <description>Temperatura máxima: 39 ºC.</description>
+    <instruction>Esté atento. Manténgase informado de la predicción meteorológica más actualizada. Se pueden producir daños moderados a personas y bienes, especialmente a aquellos vulnerables o en zonas expuestas al fenómeno.</instruction>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Temperatura máxima;39 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Campiña sevillana</areaDesc>
+      <polygon>36.94,-6.38 36.99,-6.35 37.08,-6.38 37.12,-6.34 37.14,-6.36 37.22,-6.34 37.24,-6.36 37.3,-6.33 37.34,-6.38 37.38,-6.36 37.41,-6.35 37.42,-6.31 37.47,-6.33 37.55,-6.39 37.61,-6.39 37.62,-6.36 37.62,-6.27 37.67,-6.18 37.7,-6.18 37.72,-6.15 37.72,-6.1 37.69,-6.04 37.66,-6.04 37.64,-6.06 37.62,-6.03 37.65,-5.88 37.66,-5.88 37.73,-5.76 37.74,-5.7 37.7,-5.67 37.73,-5.6 37.76,-5.46 37.75,-5.43 37.78,-5.33 37.74,-5.31 37.71,-5.34 37.69,-5.4 37.64,-5.41 37.59,-5.34 37.62,-5.31 37.63,-5.27 37.68,-5.18 37.66,-5.15 37.66,-5.11 37.7,-5.13 37.7,-5.11 37.7,-5.09 37.72,-5.05 37.71,-5.0 37.62,-4.93 37.51,-4.93 37.44,-4.88 37.41,-4.91 37.39,-4.9 37.35,-4.94 37.35,-4.98 37.3,-5.0 37.26,-5.01 37.19,-4.97 37.11,-5.12 37.09,-5.17 37.12,-5.21 37.07,-5.21 37.05,-5.24 37.04,-5.3 37.01,-5.34 37.03,-5.38 37.01,-5.42 37.05,-5.43 37.03,-5.51 36.98,-5.47 36.92,-5.55 36.89,-5.53 36.92,-5.58 36.98,-5.67 36.92,-5.72 36.93,-5.8 36.9,-5.88 36.85,-5.89 36.84,-5.97 36.86,-6.1 36.86,-6.12 36.89,-6.19 36.89,-6.25 36.91,-6.28 36.9,-6.33 36.94,-6.38</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>614102</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Moderate high-temperature warning</event>
+    <responseType>Monitor</responseType>
+    <urgency>Future</urgency>
+    <severity>Moderate</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AT;Temperaturas máximas</value>
+    </eventCode>
+    <effective>2025-07-17T10:31:40+02:00</effective>
+    <onset>2025-07-18T13:00:00+02:00</onset>
+    <expires>2025-07-18T20:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Moderate high-temperature warning. Campiña sevillana</headline>
+    <description>Maximum temperature: 39 ºC.</description>
+    <instruction>Be aware, keep up to date with the latest weather forecast. Moderate damages to people and properties may occur, especially to those vulnerable or in exposed areas.</instruction>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>amarillo</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta parametro</valueName>
+      <value>TA;Maximum temperature;39 ºC</value>
+    </parameter>
+    <parameter>
+      <valueName>AEMET-Meteoalerta probabilidad</valueName>
+      <value>40%-70%</value>
+    </parameter>
+    <area>
+      <areaDesc>Campiña sevillana</areaDesc>
+      <polygon>36.94,-6.38 36.99,-6.35 37.08,-6.38 37.12,-6.34 37.14,-6.36 37.22,-6.34 37.24,-6.36 37.3,-6.33 37.34,-6.38 37.38,-6.36 37.41,-6.35 37.42,-6.31 37.47,-6.33 37.55,-6.39 37.61,-6.39 37.62,-6.36 37.62,-6.27 37.67,-6.18 37.7,-6.18 37.72,-6.15 37.72,-6.1 37.69,-6.04 37.66,-6.04 37.64,-6.06 37.62,-6.03 37.65,-5.88 37.66,-5.88 37.73,-5.76 37.74,-5.7 37.7,-5.67 37.73,-5.6 37.76,-5.46 37.75,-5.43 37.78,-5.33 37.74,-5.31 37.71,-5.34 37.69,-5.4 37.64,-5.41 37.59,-5.34 37.62,-5.31 37.63,-5.27 37.68,-5.18 37.66,-5.15 37.66,-5.11 37.7,-5.13 37.7,-5.11 37.7,-5.09 37.72,-5.05 37.71,-5.0 37.62,-4.93 37.51,-4.93 37.44,-4.88 37.41,-4.91 37.39,-4.9 37.35,-4.94 37.35,-4.98 37.3,-5.0 37.26,-5.01 37.19,-4.97 37.11,-5.12 37.09,-5.17 37.12,-5.21 37.07,-5.21 37.05,-5.24 37.04,-5.3 37.01,-5.34 37.03,-5.38 37.01,-5.42 37.05,-5.43 37.03,-5.51 36.98,-5.47 36.92,-5.55 36.89,-5.53 36.92,-5.58 36.98,-5.67 36.92,-5.72 36.93,-5.8 36.9,-5.88 36.85,-5.89 36.84,-5.97 36.86,-6.1 36.86,-6.12 36.89,-6.19 36.89,-6.25 36.91,-6.28 36.9,-6.33 36.94,-6.38</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>614102</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

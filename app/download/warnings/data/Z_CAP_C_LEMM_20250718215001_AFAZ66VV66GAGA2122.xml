@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718215001.66VV66GAGA21221752875401</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T21:50:01-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de galernas de nivel verde</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>GA;Galernas</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de galernas de nivel verde. CCAA</headline>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Litoral cántabro</areaDesc>
+      <polygon>43.35,-3.15 43.36,-3.19 43.39,-3.22 43.42,-3.33 43.41,-3.43 43.47,-3.43 43.47,-3.49 43.51,-3.55 43.51,-3.6 43.48,-3.69 43.45,-3.77 43.41,-3.81 43.4,-3.81 43.44,-3.83 43.46,-3.78 43.5,-3.81 43.48,-3.86 43.47,-3.94 43.44,-3.98 43.44,-4.05 43.43,-4.05 43.4,-4.22 43.39,-4.28 43.4,-4.41 43.4,-4.5 43.39,-4.51 43.51,-4.51 43.73,-4.52 43.73,-4.3 43.76,-4.21 43.82,-3.94 43.83,-3.85 43.82,-3.75 43.84,-3.66 43.85,-3.56 43.84,-3.47 43.81,-3.38 43.74,-3.19 43.63,-3.17 43.39,-3.15 43.35,-3.15</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>663901C</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Minor galerna warning</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>GA;Galernas</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Minor galerna warning. CCAA</headline>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Costa - Litoral cántabro</areaDesc>
+      <polygon>43.35,-3.15 43.36,-3.19 43.39,-3.22 43.42,-3.33 43.41,-3.43 43.47,-3.43 43.47,-3.49 43.51,-3.55 43.51,-3.6 43.48,-3.69 43.45,-3.77 43.41,-3.81 43.4,-3.81 43.44,-3.83 43.46,-3.78 43.5,-3.81 43.48,-3.86 43.47,-3.94 43.44,-3.98 43.44,-4.05 43.43,-4.05 43.4,-4.22 43.39,-4.28 43.4,-4.41 43.4,-4.5 43.39,-4.51 43.51,-4.51 43.73,-4.52 43.73,-4.3 43.76,-4.21 43.82,-3.94 43.83,-3.85 43.82,-3.75 43.84,-3.66 43.85,-3.56 43.84,-3.47 43.81,-3.38 43.74,-3.19 43.63,-3.17 43.39,-3.15 43.35,-3.15</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>663901C</value>
+      </geocode>
+    </area>
+  </info>
+</alert>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns = "urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>2.49.0.0.724.0.ES.20250718215001.74VV74ALAL21221752875401</identifier>
+  <sender>http://www.aemet.es</sender>
+  <sent>2025-07-18T21:50:01-00:00</sent>
+  <status>Actual</status>
+  <msgType>Alert</msgType>
+  <scope>Public</scope>
+  <info>
+    <language>es-ES</language>
+    <category>Met</category>
+    <event>Aviso de aludes de nivel verde</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AL;Aludes</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. Agencia Estatal de Meteorología</senderName>
+    <headline>Aviso de aludes de nivel verde. CCAA</headline>
+    <web>https://www.aemet.es/es/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Pirineo navarro</areaDesc>
+      <polygon>43.04,-1.55 43.06,-1.5 43.03,-1.47 43.05,-1.45 43.03,-1.35 43.09,-1.34 43.04,-1.25 43.06,-1.23 43.01,-1.13 42.99,-1.01 42.95,-0.94 42.95,-0.81 42.97,-0.75 42.92,-0.73 42.92,-0.78 42.9,-0.82 42.88,-0.81 42.85,-0.86 42.79,-0.85 42.74,-0.9 42.71,-0.95 42.7,-1.03 42.76,-1.05 42.78,-1.13 42.81,-1.16 42.83,-1.16 42.87,-1.2 42.87,-1.23 42.81,-1.28 42.83,-1.34 42.84,-1.4 42.87,-1.42 42.88,-1.48 42.84,-1.59 42.95,-1.56 43.04,-1.55</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>743103</value>
+      </geocode>
+    </area>
+  </info>
+  <info>
+    <language>en-GB</language>
+    <category>Met</category>
+    <event>Minor avalanches warning</event>
+    <responseType>None</responseType>
+    <urgency>Future</urgency>
+    <severity>Minor</severity>
+    <certainty>Likely</certainty>
+    <eventCode>
+      <valueName>AEMET-Meteoalerta fenomeno</valueName>
+      <value>AL;Aludes</value>
+    </eventCode>
+    <effective>2025-07-18T23:50:01+02:00</effective>
+    <onset>2025-07-21T00:00:00+02:00</onset>
+    <expires>2025-07-21T23:59:59+02:00</expires>
+    <senderName>AEMET. State Meteorological Agency</senderName>
+    <headline>Minor avalanches warning. CCAA</headline>
+    <web>https://www.aemet.es/en/eltiempo/prediccion/avisos</web>
+    <contact>AEMET</contact>
+    <parameter>
+      <valueName>AEMET-Meteoalerta nivel</valueName>
+      <value>verde</value>
+    </parameter>
+    <area>
+      <areaDesc>Pirineo navarro</areaDesc>
+      <polygon>43.04,-1.55 43.06,-1.5 43.03,-1.47 43.05,-1.45 43.03,-1.35 43.09,-1.34 43.04,-1.25 43.06,-1.23 43.01,-1.13 42.99,-1.01 42.95,-0.94 42.95,-0.81 42.97,-0.75 42.92,-0.73 42.92,-0.78 42.9,-0.82 42.88,-0.81 42.85,-0.86 42.79,-0.85 42.74,-0.9 42.71,-0.95 42.7,-1.03 42.76,-1.05 42.78,-1.13 42.81,-1.16 42.83,-1.16 42.87,-1.2 42.87,-1.23 42.81,-1.28 42.83,-1.34 42.84,-1.4 42.87,-1.42 42.88,-1.48 42.84,-1.59 42.95,-1.56 43.04,-1.55</polygon>
+      <geocode>
+        <valueName>AEMET-Meteoalerta zona</valueName>
+        <value>743103</value>
+      </geocode>
+    </area>
+  </info>
+</alert>
