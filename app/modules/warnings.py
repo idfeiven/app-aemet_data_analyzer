@@ -41,7 +41,11 @@ st.write("Fuente: AEMET (Agencia Estatal de Meteorología)")
 if "warnings" not in st.session_state:
     message_container = st.empty()
     st.session_state.messages = []
-    download_aemet_warnings.download_aemet_warnings(area='esp', message=add_message)
+    try:
+        download_aemet_warnings.download_aemet_warnings(area='esp', message=add_message)
+    except Exception as e:
+        st.error(f'Error while downloading warnings: {e}')
+        st.stop()
     try:
         st.session_state.warnings = warnings_plotter.get_df_warnings()
     except Exception as e:
