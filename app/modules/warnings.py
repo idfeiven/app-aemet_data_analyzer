@@ -38,8 +38,6 @@ st.set_page_config(layout="wide")
 st.title("Avisos meteorológicos de AEMET")
 st.write("Fuente: AEMET (Agencia Estatal de Meteorología)")
 
-
-
 # Descargar avisos si no están ya en memoria
 if "warnings" not in st.session_state:
     try:
@@ -50,30 +48,24 @@ if "warnings" not in st.session_state:
         st.error(f'Error while downloading warnings: {e}')
         st.stop()
     
-tar_bytes = st.session_state.warnings
-
 # Mostrar selector de fecha
 date = st.selectbox(
     label="Selecciona una fecha para ver los avisos activos:",
     options=pd.date_range(datetime.today().date(), periods=3).strftime("%Y-%m-%d"),
     key="selected_date"
 )
-if "date" not in st.session_state or st.session_state.get("date") != date:
-    st.session_state.date = date
 
-try:
-    warnings_map = warnings_plotter.plot_aemet_warnings(date, 
-                                                        tar_bytes)
-except Exception as e:
-    st.error(f'Error found when generating interactive map: {e}')
-    st.stop()
-
-# Actualizar mapa solo si cambia la fecha o aún no está guardado
-if "warnings_map" not in st.session_state:
+if "warnings_map" not in st.session_state or st.session_state.date != date:
     st.session_state.date = date
-    st.session_state.warnings_map = warnings_plotter.plot_aemet_warnings(date, tar_bytes)
+    tar_bytes = st.session_state.warnings
+    tar_bytes.seek(0)  # ⬅️ Reposicionar cursor antes de leer
+    try:
+        st.session_state.warnings_map = warnings_plotter.plot_aemet_warnings(date, tar_bytes)
+    except Exception as e:
+        st.error(f'Error found when generating interactive map: {e}')
+        st.stop()
 
 # Mostrar el mapa (fuera del condicional para que siempre se muestre)
 st.subheader("Mapa de Avisos Activos")
-st_folium(warnings_map, width=1000, height=500)
+st_folium(st.session_state.warnings_map, width=1000, height=500)
 

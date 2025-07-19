@@ -71,17 +71,28 @@ def parse_xml_content(xml_content):
         
         df_warnings['severity_level'] = df_warnings['severity'].map(severity_map).fillna(0).astype(int)
         
-        return df_warnings
+    return df_warnings
 
 def get_df_warnings(xml_files):
+    import pandas as pd
 
-    warnings = []
-    for file in xml_files:
-        warning_area = parse_xml_content(file)
-        warnings.append(warning_area)
-    warnings = pd.concat(warnings)
+    print(f"🔎 Recibidos {len(xml_files)} archivos XML")
 
-    return warnings
+    df_warnings = pd.DataFrame()
+    for idx, file in enumerate(xml_files):
+        print(f"📂 Procesando XML {idx + 1}")
+        try:
+            warning_area = parse_xml_content(file)
+            print(f"   ↳ parse_xml_content() devuelve: {len(warning_area)} filas")
+        except Exception as e:
+            print(f"   ❌ Error procesando XML: {e}")
+            continue
+
+        if not warning_area.empty:
+            df_warnings = pd.concat([df_warnings, warning_area])
+
+    print(f"✅ DataFrame final: {len(df_warnings)} filas")
+    return df_warnings
 
 def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
     m = folium.Map(location=center, zoom_start=zoom)
