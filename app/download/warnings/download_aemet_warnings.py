@@ -6,14 +6,12 @@ Author: Iván Domínguez Fuentes
 (c) 2025
 '''
 
-import os
+import io
 import time
 import yaml
-import tarfile
 import requests
 import pandas as pd
 from pathlib import Path
-from datetime import datetime
 
 
 def load_config_file() -> dict:
@@ -85,14 +83,8 @@ def get_current_warnings(config: dict, area: str, message: callable) -> pd.DataF
                     
                     if response_data.status_code == 200:
                         message(f' -- {response_data.reason}. Successful data request.')
-                        now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-                        filename = f"Z_CAP_AEMET_{now}.tar"
-                        save_dir = Path(__file__).parent / "data"
-                        save_dir.mkdir(parents=True, exist_ok=True)
-                        filepath = save_dir / filename
-                        with open(filepath, "wb") as f:
-                            f.write(response_data.content)
-                            break
+                        tar_bytes = io.BytesIO(response_data.content)
+                        return tar_bytes
                     else:
                         message(f' -- {response_data.status_code}. {response_data.reason}')
                         retries += 1
@@ -113,41 +105,11 @@ def get_current_warnings(config: dict, area: str, message: callable) -> pd.DataF
             retries += 1
             time.sleep(5)
 
-def extract_all_tar_files(folder_path: str):
-    destino = Path(__file__).parent / "data"
-
-    # Crear la carpeta de destino si no existe
-    destino.mkdir(parents=True, exist_ok=True)
-
-    # Recorrer todos los archivos en el directorio
-    for filename in os.listdir(folder_path):
-        if filename.endswith(".tar"):
-            tar_path = os.path.join(folder_path, filename)
-            try:
-                with tarfile.open(tar_path, "r") as tar:
-                    tar.extractall(path=destino)
-                    print(f"Archivo {filename} extraído con éxito.")
-            except tarfile.TarError as e:
-                print(f"Error al extraer {filename}: {e}")
 
 def download_aemet_warnings(area: str, message: callable) -> str:
-    """Descarga el archivo XML de avisos activos"""
+    """Descarga y guarda en memoria el archivo .tar de avisos activos"""
     
     config = load_config_file()
+    tar_bytes = get_current_warnings(config, area, message)
 
-    # Borramos antiguos archivos si existen
-    directorio = Path(__file__).parent / "data"
-    if directorio.exists() and directorio.is_dir():
-        for file in directorio.iterdir():
-            if file.is_file():
-                file.unlink()
-        get_current_warnings(config, area, message)
-        extract_all_tar_files(directorio)
-    else:
-        # Si no existe, lo creamos (opcional, si necesitas que exista después)
-        directorio.mkdir(parents=True, exist_ok=True)
-        get_current_warnings(config, area, message)
-        extract_all_tar_files(directorio)
-
-
-
+    return tar_bytes

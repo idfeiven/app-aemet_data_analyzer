@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+from datetime import datetime
 from streamlit_folium import st_folium
 from download.warnings import download_aemet_warnings, warnings_plotter
  
@@ -37,45 +38,42 @@ st.set_page_config(layout="wide")
 st.title("Avisos meteorológicos de AEMET")
 st.write("Fuente: AEMET (Agencia Estatal de Meteorología)")
 
+
+
 # Descargar avisos si no están ya en memoria
 if "warnings" not in st.session_state:
-    message_container = st.empty()
-    st.session_state.messages = []
     try:
-        download_aemet_warnings.download_aemet_warnings(area='esp', message=add_message)
+        message_container = st.empty()
+        st.session_state.messages = []
+        st.session_state.warnings = download_aemet_warnings.download_aemet_warnings(area='esp', message=add_message)
     except Exception as e:
         st.error(f'Error while downloading warnings: {e}')
         st.stop()
-    try:
-        st.session_state.warnings = warnings_plotter.get_df_warnings()
-    except Exception as e:
-        st.error(f'Error found when getting warnings data: {e}')
-        st.stop()
+    
+tar_bytes = st.session_state.warnings
 
-df_warnings = st.session_state.warnings
+# Mostrar selector de fecha
+date = st.selectbox(
+    label="Selecciona una fecha para ver los avisos activos:",
+    options=pd.date_range(datetime.today().date(), periods=3).strftime("%Y-%m-%d"),
+    key="selected_date"
+)
+if "date" not in st.session_state or st.session_state.get("date") != date:
+    st.session_state.date = date
 
-# Mostrar advertencia si no hay avisos
-if df_warnings.empty:
-    st.warning("No hay avisos meteorológicos activos en la fecha seleccionada.")
-else:
-    # Mostrar selector de fecha
-    date = st.selectbox(
-        label="Selecciona una fecha para ver los avisos activos:",
-        options=df_warnings['date_ini'].unique(),
-        key="selected_date"
-    )
+try:
+    warnings_map = warnings_plotter.plot_aemet_warnings(date, 
+                                                        tar_bytes)
+except Exception as e:
+    st.error(f'Error found when generating interactive map: {e}')
+    st.stop()
 
-    try:
-        warnings_map = warnings_plotter.plot_aemet_warnings(date, df_warnings)
-    except Exception as e:
-        st.error(f'Error found when generating interactive map: {e}')
-        st.stop()
-    # Actualizar mapa solo si cambia la fecha o aún no está guardado
-    if "warnings_map" not in st.session_state or  "date" not in st.session_state or st.session_state.date != date:
-        st.session_state.date = date
-        st.session_state.warnings_map = warnings_plotter.plot_aemet_warnings(date, df_warnings)
+# Actualizar mapa solo si cambia la fecha o aún no está guardado
+if "warnings_map" not in st.session_state:
+    st.session_state.date = date
+    st.session_state.warnings_map = warnings_plotter.plot_aemet_warnings(date, tar_bytes)
 
-    # Mostrar el mapa (fuera del condicional para que siempre se muestre)
-    st.subheader("Mapa de Avisos Activos")
-    st_folium(warnings_map, width=1000, height=500)
+# Mostrar el mapa (fuera del condicional para que siempre se muestre)
+st.subheader("Mapa de Avisos Activos")
+st_folium(warnings_map, width=1000, height=500)
 

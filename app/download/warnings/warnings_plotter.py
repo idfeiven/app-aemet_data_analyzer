@@ -1,9 +1,6 @@
-import os
-import glob
 import folium
 import tarfile
 import pandas as pd
-from pathlib import Path
 from folium import IFrame
 import xml.etree.ElementTree as ET
 
@@ -12,30 +9,23 @@ ns = {'cap': 'urn:oasis:names:tc:emergency:cap:1.2'}
 severity_map = {'rojo': 3, 'naranja': 2, 'amarillo': 1}
 
 
-def find_files(directorio, patron="*.xml", recursivo=True):
+def extract_xml(tar_bytes: bytes) -> list[bytes]:
     """
-    Devuelve una lista de rutas de archivos que coinciden con un patrón dentro de un directorio.
-    
-    Parámetros:
-        directorio (str): Ruta base donde buscar.
-        patron (str): Patrón de búsqueda, e.g. '*.xml', '*datos*.csv'.
-        recursivo (bool): Si debe buscar en subdirectorios.
-
-    Retorna:
-        List[str]: Lista de rutas que coinciden.
+    Devuelve una lista de contenidos XML (en bytes) a partir de un archivo .tar en memoria.
     """
-    if recursivo:
-        patron_busqueda = os.path.join(directorio, "**", patron)
-    else:
-        patron_busqueda = os.path.join(directorio, patron)
-    
-    return glob.glob(patron_busqueda, recursive=recursivo)
+    xml_files = []
+    with tarfile.open(fileobj=tar_bytes) as tar:
+        for member in tar.getmembers():
+            if member.name.endswith(".xml"):
+                f = tar.extractfile(member)
+                if f is not None:
+                    xml_files.append(f.read())
+    return xml_files
 
 
-def parse_cap_file(xml_path):
-    """Parsea archivo XML CAP y extrae polígonos y títulos"""
-    tree = ET.parse(xml_path)
-    root = tree.getroot()
+def parse_xml_content(xml_content):
+    """Parsea el contenido de XML CAP y extrae polígonos y títulos"""
+    root = ET.fromstring(xml_content)
 
     warnings = []
     infos = root.findall('cap:info', ns)
@@ -75,7 +65,7 @@ def parse_cap_file(xml_path):
     if not df_warnings.empty:
         df_warnings['type_warning'] = df_warnings['params'][0][1].split(";")[1]
         df_warnings['probability'] = df_warnings['params'][0][2]
-        df_warnings["date_ini"] = pd.to_datetime(df_warnings["datetime_ini"], utc=True).dt.date
+        df_warnings["date_ini"] = pd.to_datetime(df_warnings["datetime_ini"], utc=True).dt.strftime("%Y-%m-%d")
 
         df_warnings = df_warnings.drop_duplicates(subset=['type_warning', 'severity', 'datetime_ini', 'datetime_end'])
         
@@ -83,6 +73,15 @@ def parse_cap_file(xml_path):
         
         return df_warnings
 
+def get_df_warnings(xml_files):
+
+    warnings = []
+    for file in xml_files:
+        warning_area = parse_xml_content(file)
+        warnings.append(warning_area)
+    warnings = pd.concat(warnings)
+
+    return warnings
 
 def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
     m = folium.Map(location=center, zoom_start=zoom)
@@ -137,21 +136,14 @@ def _get_warning_color(severity_level):
     else:
         return '#ffffff'  # Color por defecto
 
-def get_df_warnings():
 
-    files = find_files(Path(__file__).parent / "data")
-
-    warnings = []
-    for file in files:
-        warning_area = parse_cap_file(file)
-        warnings.append(warning_area)
-    warnings = pd.concat(warnings, ignore_index=True)
-
-    return warnings
-
-def plot_aemet_warnings(date, warnings):
+def plot_aemet_warnings(date, tar_bytes):
     """Genera un mapa con los avisos activos de AEMET"""
-    warnings = warnings[warnings['date_ini'] == date]
-    map_obj = create_map(warnings)
+
+    xml_files = extract_xml(tar_bytes)
+    df_warnings = get_df_warnings(xml_files)
+
+    df_warnings_date = df_warnings[df_warnings['date_ini'] == date]
+    map_obj = create_map(df_warnings_date)
 
     return map_obj
