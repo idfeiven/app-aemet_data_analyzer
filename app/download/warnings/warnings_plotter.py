@@ -113,9 +113,9 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Aviso:</strong> {warn['severity']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Probabilidad:</strong> {warn['probability']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px">Activo desde</div>
-                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_ini']}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_ini'].split('T')[0]} {warn['datetime_ini'].split('T')[1].split('+')[0]}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px">hasta</div>
-                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_end']}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_end'].split('T')[0]} {warn['datetime_end'].split('T')[1].split('+')[0]}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Comentario:</strong>{warn['description']}</div>
                 </div>
                 """
