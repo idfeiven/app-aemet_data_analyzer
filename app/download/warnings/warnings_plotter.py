@@ -67,7 +67,7 @@ def parse_xml_content(xml_content):
         df_warnings['probability'] = df_warnings['params'][0][2]
         df_warnings["date_ini"] = pd.to_datetime(df_warnings["datetime_ini"], utc=True).dt.strftime("%Y-%m-%d")
 
-        df_warnings = df_warnings.drop_duplicates(subset=['type_warning', 'severity', 'datetime_ini', 'datetime_end'])
+        df_warnings = df_warnings.drop_duplicates(subset=['description', 'severity', 'datetime_ini', 'datetime_end'])
         
         df_warnings['severity_level'] = df_warnings['severity'].map(severity_map).fillna(0).astype(int)
         
@@ -126,9 +126,9 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
         popup = folium.Popup(iframe, max_width=200)
 
         folium.Polygon(
-            locations=warn['polygon'],
+            locations=warn_area['polygon'].values[0],
             popup=popup,
-            color=_get_warning_color(warn['severity_level'].max()),
+            color=_get_warning_color(warn_area['severity_level'].max()),
             fill=True,
             fill_opacity=0.5
         ).add_to(m)
