@@ -33,6 +33,7 @@ def add_message(msg: str) -> None:
 
 
 # -------------------------------MAIN PROGRAM-------------------------------------
+st.cache_data.clear()
 
 st.set_page_config(layout="wide")
 st.title("Avisos meteorológicos de AEMET")

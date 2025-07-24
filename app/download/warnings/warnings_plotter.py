@@ -65,7 +65,6 @@ def parse_xml_content(xml_content):
     if not df_warnings.empty:
         df_warnings['type_warning'] = df_warnings['params'][0][1].split(";")[1]
         df_warnings['probability'] = df_warnings['params'][0][2]
-        df_warnings["date_ini"] = pd.to_datetime(df_warnings["datetime_ini"], utc=True).dt.strftime("%Y-%m-%d")
 
         df_warnings = df_warnings.drop_duplicates(subset=['description', 'severity', 'datetime_ini', 'datetime_end'])
         
@@ -105,7 +104,7 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                     <div style="font-weight: bold; font-size: 16px;">{warn_area['area'].values.flatten()[0]}</div>
                 """
         popup_all = ""
-        for type_warning in warn_area.type_warning.unique():
+        for type_warning in warn_area.type_warning:
                 warn = warn_area[warn_area.type_warning == type_warning].iloc[0]
                 # Construir el HTML enriquecido para el popup
                 html_popup = f"""
@@ -154,7 +153,7 @@ def plot_aemet_warnings(date, tar_bytes):
     xml_files = extract_xml(tar_bytes)
     df_warnings = get_df_warnings(xml_files)
 
-    df_warnings_date = df_warnings[df_warnings['date_ini'] == date]
+    df_warnings_date = df_warnings[df_warnings['datetime_ini'].apply(lambda x: x.split('T')[0]) == date]
     map_obj = create_map(df_warnings_date)
 
     return map_obj
