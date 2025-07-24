@@ -52,7 +52,7 @@ if "warnings" not in st.session_state:
 # Mostrar selector de fecha
 date = st.selectbox(
     label="Selecciona una fecha para ver los avisos activos:",
-    options=pd.date_range(datetime.today().date(), periods=3).strftime("%Y-%m-%d"),
+    options=pd.date_range(pd.to_datetime("today").date(), periods=3),
     key="selected_date"
 )
 

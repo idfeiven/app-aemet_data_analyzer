@@ -51,7 +51,7 @@ def parse_xml_content(xml_content):
                 'polygon': coords,
                 'params': [p.find('cap:value', ns).text for p in param_elem],
                 'description': description,
-                'date_emitted': date_emitted,
+                'datetime_emitted': date_emitted,
                 'datetime_ini': date_ini,
                 'datetime_end': date_end,
                 'type_warning': type_warn,
@@ -64,12 +64,14 @@ def parse_xml_content(xml_content):
 
     if not df_warnings.empty:
         df_warnings['type_warning'] = df_warnings['params'][0][1].split(";")[1]
-        df_warnings['probability'] = df_warnings['params'][0][2]
+        df_warnings['probability'] = df_warnings['params'][0][2]        
+        df_warnings['severity_level'] = df_warnings['severity'].map(severity_map).fillna(0).astype(int)
+        df_warnings.loc[:,'datetime_ini'] = pd.to_datetime(df_warnings['datetime_ini'], utc=True).dt.tz_convert('Europe/Madrid').dt.tz_localize(None)
+        df_warnings.loc[:,'datetime_end'] = pd.to_datetime(df_warnings['datetime_end'], utc=True).dt.tz_convert('Europe/Madrid').dt.tz_localize(None)
+        df_warnings.loc[:,'datetime_emitted'] = pd.to_datetime(df_warnings['datetime_emitted'], utc=True).dt.tz_convert('Europe/Madrid').dt.tz_localize(None)
 
         df_warnings = df_warnings.drop_duplicates(subset=['description', 'severity', 'datetime_ini', 'datetime_end'])
-        
-        df_warnings['severity_level'] = df_warnings['severity'].map(severity_map).fillna(0).astype(int)
-        
+
     return df_warnings
 
 def get_df_warnings(xml_files):
@@ -90,6 +92,8 @@ def get_df_warnings(xml_files):
         if not warning_area.empty:
             df_warnings = pd.concat([df_warnings, warning_area])
 
+    df_warnings[['datetime_emitted', 'datetime_ini', 'datetime_end']] = df_warnings[['datetime_emitted', 'datetime_ini', 'datetime_end']].astype('datetime64[ns]')
+    
     print(f"✅ DataFrame final: {len(df_warnings)} filas")
     return df_warnings
 
@@ -112,9 +116,9 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Aviso:</strong> {warn['severity']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Probabilidad:</strong> {warn['probability']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px">Activo desde</div>
-                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_ini'].split('T')[0]} {warn['datetime_ini'].split('T')[1].split('+')[0]}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_ini']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px">hasta</div>
-                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_end'].split('T')[0]} {warn['datetime_end'].split('T')[1].split('+')[0]}</div>
+                    <div style="margin-top: 5px; font-family: Arial; font-size: 13px">{warn['datetime_end']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Comentario:</strong>{warn['description']}</div>
                 </div>
                 """
@@ -153,7 +157,9 @@ def plot_aemet_warnings(date, tar_bytes):
     xml_files = extract_xml(tar_bytes)
     df_warnings = get_df_warnings(xml_files)
 
-    df_warnings_date = df_warnings[df_warnings['datetime_ini'].apply(lambda x: x.split('T')[0]) == date]
+    date_prev = date - pd.Timedelta(days=1)
+    df_warnings_date = df_warnings[(df_warnings['datetime_ini'].dt.date <= date.date()) &
+                                   (df_warnings['datetime_end'].dt.date >= date.date())]
     map_obj = create_map(df_warnings_date)
 
     return map_obj
