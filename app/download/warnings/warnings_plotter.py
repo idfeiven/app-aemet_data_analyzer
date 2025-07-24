@@ -104,7 +104,7 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                     <div style="font-weight: bold; font-size: 16px;">{warn_area['area'].values.flatten()[0]}</div>
                 """
         popup_all = ""
-        for type_warning in warn_area.type_warning:
+        for type_warning in warn_area.type_warning.unique():
                 warn = warn_area[warn_area.type_warning == type_warning].iloc[0]
                 # Construir el HTML enriquecido para el popup
                 html_popup = f"""
