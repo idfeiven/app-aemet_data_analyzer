@@ -157,9 +157,9 @@ def plot_aemet_warnings(date, tar_bytes):
     xml_files = extract_xml(tar_bytes)
     df_warnings = get_df_warnings(xml_files)
 
-    date_prev = date - pd.Timedelta(days=1)
     df_warnings_date = df_warnings[(df_warnings['datetime_ini'].dt.date <= date.date()) &
-                                   (df_warnings['datetime_end'].dt.date >= date.date())]
+                                   (df_warnings['datetime_end'] >= pd.to_datetime("today"))]
+    
     map_obj = create_map(df_warnings_date)
 
     return map_obj
