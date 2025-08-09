@@ -144,7 +144,7 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
 
     # Añadir título
     title = Element("h3")
-    title.text = f"Avisos AEMET para el día {df_warnings['datetime_ini'].dt.date.unique().values.flatten()[0]}"
+    title.text = f"Avisos AEMET para el día {df_warnings['datetime_ini'].dt.date.unique()[0]}"
     title.add_to(m)
 
     return m
