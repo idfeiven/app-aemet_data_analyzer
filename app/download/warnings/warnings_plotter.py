@@ -3,7 +3,6 @@ import tarfile
 import pandas as pd
 from folium import IFrame
 from folium import Element
-from folium import Tooltip
 import xml.etree.ElementTree as ET
 from folium.plugins import Fullscreen
 
@@ -116,6 +115,7 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                 warn = warn_area[warn_area.type_warning == type_warning].iloc[0]
                 # Construir el HTML enriquecido para el popup
                 html_popup = f"""
+                    <div style="border: 3px solid {_get_warning_color(warn_area['severity_level'].max())}; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
                     <div style="margin-top: 5px; font-family: Arial; font-weight: bold; font-size: 14px;">{warn['type_warning']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Aviso:</strong> {warn['severity']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Probabilidad:</strong> {warn['probability']}</div>
@@ -131,12 +131,10 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
 
         iframe = IFrame(html=popup, width=200, height=250)
         popup = folium.Popup(iframe, max_width=200)
-        tooltip = Tooltip(popup, sticky=True)
 
         folium.Polygon(
             locations=warn_area['polygon'].values[0],
-            # popup=popup,
-            tooltip=tooltip,
+            popup=popup,
             color=_get_warning_color(warn_area['severity_level'].max()),
             fill=True,
             fill_opacity=0.5
