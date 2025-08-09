@@ -142,10 +142,11 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
     # Añadir el botón de pantalla completa
     Fullscreen(position='bottomright', title='Pantalla completa', title_cancel='Salir de pantalla completa').add_to(m)
 
-    # Añadir título
-    title = Element("h3")
-    title.text = f"Avisos AEMET para el día {df_warnings['datetime_ini'].dt.date.unique()[0]}"
-    title.add_to(m)
+    # Título centrado
+    title_html = f'''
+         <h3 align="center" style="font-size:20px"><b>Avisos Meteorológicos Activos para {df_warnings['datetime_ini'].dt.date.unique()[0]}</b></h3>
+         '''
+    m.get_root().html.add_child(folium.Element(title_html))
 
     return m
 
