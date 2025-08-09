@@ -3,6 +3,7 @@ import tarfile
 import pandas as pd
 from folium import IFrame
 from folium import Element
+from folium import Tooltip
 import xml.etree.ElementTree as ET
 from folium.plugins import Fullscreen
 
@@ -128,12 +129,14 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                 popup_all = popup_all + html_popup
         popup = html_popup_base + popup_all + "</div>"
 
-        iframe = IFrame(html=popup, width=200, height=250)
-        popup = folium.Popup(iframe, max_width=200)
+        # iframe = IFrame(html=popup, width=200, height=250)
+        # popup = folium.Popup(iframe, max_width=200)
+        tooltip = Tooltip(popup, sticky=True)
 
         folium.Polygon(
             locations=warn_area['polygon'].values[0],
-            popup=popup,
+            # popup=popup,
+            tooltip=tooltip,
             color=_get_warning_color(warn_area['severity_level'].max()),
             fill=True,
             fill_opacity=0.5
@@ -141,12 +144,6 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
     
     # Añadir el botón de pantalla completa
     Fullscreen(position='bottomright', title='Pantalla completa', title_cancel='Salir de pantalla completa').add_to(m)
-
-    # Título centrado
-    title_html = f'''
-         <h3 align="center" style="font-size:20px"><b>Avisos Meteorológicos Activos para {df_warnings['datetime_ini'].dt.date.unique()[0]}</b></h3>
-         '''
-    Element(title_html).add_to(m)
 
     return m
 
