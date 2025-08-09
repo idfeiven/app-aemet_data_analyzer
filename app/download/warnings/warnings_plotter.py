@@ -115,7 +115,7 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                 warn = warn_area[warn_area.type_warning == type_warning].iloc[0]
                 # Construir el HTML enriquecido para el popup
                 html_popup = f"""
-                    <div style="border: 3px solid {_get_warning_color(warn_area['severity_level'].max())}; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
+                    <div style="border: 3px solid {_get_warning_color(warn['severity_level'])}; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
                     <div style="margin-top: 5px; font-family: Arial; font-weight: bold; font-size: 14px;">{warn['type_warning']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Aviso:</strong> {warn['severity']}</div>
                     <div style="margin-top: 5px; font-family: Arial; font-size: 13px"><strong>Probabilidad:</strong> {warn['probability']}</div>
