@@ -146,7 +146,7 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
     title_html = f'''
          <h3 align="center" style="font-size:20px"><b>Avisos Meteorológicos Activos para {df_warnings['datetime_ini'].dt.date.unique()[0]}</b></h3>
          '''
-    m.get_root().html.add_child(folium.Element(title_html))
+    Element(title_html).add_to(m.get_root().html)
 
     return m
 
