@@ -3,6 +3,8 @@ import tarfile
 import pandas as pd
 from folium import IFrame
 import xml.etree.ElementTree as ET
+from folium.plugins import Fullscreen
+
 
 # Namespace CAP v1.2
 ns = {'cap': 'urn:oasis:names:tc:emergency:cap:1.2'}
@@ -135,6 +137,9 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
             fill=True,
             fill_opacity=0.5
         ).add_to(m)
+    
+    # Añadir el botón de pantalla completa
+    Fullscreen(position='bottomright', title='Pantalla completa', title_cancel='Salir de pantalla completa').add_to(m)
 
     return m
 
