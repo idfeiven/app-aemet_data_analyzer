@@ -2,6 +2,7 @@ import folium
 import tarfile
 import pandas as pd
 from folium import IFrame
+from folium import Element
 import xml.etree.ElementTree as ET
 from folium.plugins import Fullscreen
 
@@ -140,6 +141,11 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
     
     # Añadir el botón de pantalla completa
     Fullscreen(position='bottomright', title='Pantalla completa', title_cancel='Salir de pantalla completa').add_to(m)
+
+    # Añadir título
+    title = Element("h3")
+    title.text = f"Avisos AEMET para el día {df_warnings['datetime_ini'].dt.date.unique().values.flatten()[0]}"
+    title.add_to(m)
 
     return m
 
