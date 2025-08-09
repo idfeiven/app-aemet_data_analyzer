@@ -129,8 +129,8 @@ def create_map(df_warnings, center=(40.4, -3.7), zoom=6):
                 popup_all = popup_all + html_popup
         popup = html_popup_base + popup_all + "</div>"
 
-        # iframe = IFrame(html=popup, width=200, height=250)
-        # popup = folium.Popup(iframe, max_width=200)
+        iframe = IFrame(html=popup, width=200, height=250)
+        popup = folium.Popup(iframe, max_width=200)
         tooltip = Tooltip(popup, sticky=True)
 
         folium.Polygon(
