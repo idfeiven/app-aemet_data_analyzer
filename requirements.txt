@@ -1,8 +1,9 @@
 pandas
 plotly
-streamlit
+streamlit==1.29.0
 pathlib
 pyYAML
 openpyxl
 folium
 streamlit_folium
+altair==4.2.2
